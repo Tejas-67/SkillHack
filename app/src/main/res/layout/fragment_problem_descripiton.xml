@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ProblemDescripitonFragment"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/problem_statement_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Problem Statement"
+            android:textSize="30dp"
+            style="@style/TextAppearance.Material3.BodyLarge"
+            android:paddingTop="20dp"
+            android:paddingLeft="20dp"
+
+            />
+        <TextView
+            android:id="@+id/problem_description_tv"
+            android:paddingLeft="20dp"
+            android:paddingTop="10dp"
+            android:textSize="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:text="This textview would be displaying the problem description for the problem statement. I am not good at layout stuff so would be leaving it here.
+Signing Off."/>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/drive_link_input_textinputlayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/drive_link_input_texteditlayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="textUri"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/drive_link_submit_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Submit"/>
+
+
+    </LinearLayout>
+</layout>

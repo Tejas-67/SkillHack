@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.skillhack.Fragments.HomeFragment"
+        android:label="HomeFragment" >
+        <action
+            android:id="@+id/action_homeFragment_to_problemDescripitonFragment"
+            app:destination="@id/problemDescripitonFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/problemDescripitonFragment"
+        android:name="com.example.skillhack.Fragments.ProblemDescripitonFragment"
+        android:label="ProblemDescripitonFragment" >
+        <argument
+            android:name="UID"
+            app:argType="string" />
+    </fragment>
+</navigation>
