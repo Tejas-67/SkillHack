@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "537989757960",
+    "project_id": "skillhack-9d59b",
+    "storage_bucket": "skillhack-9d59b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:537989757960:android:19026487fa8579a0c2e5bd",
+        "android_client_info": {
+          "package_name": "com.example.skillhack"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "537989757960-2dre0o77u2d11hvhpoo104ei29i49kit.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDgDrhkC725puCTys2aS09koYTCGpln7Zk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "537989757960-2dre0o77u2d11hvhpoo104ei29i49kit.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

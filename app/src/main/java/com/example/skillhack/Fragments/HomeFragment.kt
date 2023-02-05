@@ -5,10 +5,16 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
+import com.example.skillhack.Adapters.ProblemAdapter
 import com.example.skillhack.R
+import com.example.skillhack.dao.ProblemsDao
+import com.example.skillhack.data.problem
 import com.example.skillhack.databinding.FragmentHomeBinding
+import com.google.common.collect.Iterables
+import com.google.firebase.firestore.DocumentReference
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -44,6 +50,15 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val dao=ProblemsDao()
+//        binding.problemListRcv.adapter=ProblemAdapter(dao.getProblems())
+
+        dao.getProblems { problems ->
+            binding.problemListRcv.adapter = ProblemAdapter(problems)
+            Toast.makeText(requireContext(), "Halwa", Toast.LENGTH_SHORT).show()
+        }
+
+
         binding.button.setOnClickListener {
             val s="Working"
             val action=HomeFragmentDirections.actionHomeFragmentToProblemDescripitonFragment(s)

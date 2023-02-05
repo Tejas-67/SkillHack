@@ -6,6 +6,7 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.example.skillhack.R
+import com.example.skillhack.dao.ProblemsDao
 import com.example.skillhack.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -22,6 +23,9 @@ class MainActivity : AppCompatActivity() {
 
         navController=navHostFragment.navController
         setupActionBarWithNavController(navController)
+
+//        val dao = ProblemsDao()
+//        dao.getProblems()
 
     }
     override fun onSupportNavigateUp(): Boolean {
