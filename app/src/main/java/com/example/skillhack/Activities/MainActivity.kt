@@ -2,7 +2,9 @@ package com.example.skillhack.Activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.MenuItem
 import androidx.navigation.NavController
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.example.skillhack.R
@@ -28,6 +30,14 @@ class MainActivity : AppCompatActivity() {
 //        dao.getProblems()
 
     }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if(item.itemId==R.id.profile){
+
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
     override fun onSupportNavigateUp(): Boolean {
         return navController.navigateUp()||super.onSupportNavigateUp()
     }

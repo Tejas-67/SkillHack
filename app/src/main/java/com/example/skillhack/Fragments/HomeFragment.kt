@@ -2,16 +2,20 @@ package com.example.skillhack.Fragments
 
 import android.os.Bundle
 import android.util.Log
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.example.skillhack.Adapters.ProblemAdapter
 import com.example.skillhack.Models.SharedViewModel
+import com.example.skillhack.R
 import com.example.skillhack.dao.ProblemsDao
+import com.example.skillhack.data.Problem
 import com.example.skillhack.databinding.FragmentHomeBinding
+import com.google.common.collect.Iterables
+import com.google.firebase.firestore.DocumentReference
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -43,6 +47,7 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        setHasOptionsMenu(true)
         _binding=FragmentHomeBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -59,6 +64,26 @@ class HomeFragment : Fragment() {
         }
 
 
+    }
 
+    override fun onPrepareOptionsMenu(menu: Menu) {
+        super.onPrepareOptionsMenu(menu)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater?.inflate(R.menu.menu, menu)
+
+
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
+
+        if(item.itemId==R.id.profile){
+            val action=HomeFragmentDirections.actionHomeFragmentToProfileFragment()
+            binding.root.findNavController().navigate(action)
+        }
+        return super.onOptionsItemSelected(item)
     }
 }

@@ -12,7 +12,6 @@ import android.widget.Toast
 import androidx.navigation.Navigation.findNavController
 import androidx.navigation.findNavController
 import com.example.skillhack.Activities.MainActivity
-
 import com.example.skillhack.databinding.FragmentLoginPhoneNumberBinding
 import com.google.android.gms.tasks.Task
 import com.google.firebase.FirebaseException
