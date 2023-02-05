@@ -3,7 +3,7 @@ package com.example.skillhack.Models
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.skillhack.data.problem
+import com.example.skillhack.data.Problem
 
 class SharedViewModel: ViewModel() {
 
@@ -21,14 +21,14 @@ class SharedViewModel: ViewModel() {
     private val _listOfSolved=mutableListOf<String>()
     public val listOfSolved: MutableList<String> get()=_listOfSolved
 
-    private var _currProblem=MutableLiveData<problem>()
+    private var _currProblem=MutableLiveData<Problem>()
     public val currproblem get()=_currProblem.value
 
-    public fun updateCurrProblem(p: problem){
+    public fun updateCurrProblem(p: Problem){
         _currProblem.value=p
     }
     public fun nullCurrProb(){
-        _currProblem=MutableLiveData<problem>()
+        _currProblem=MutableLiveData<Problem>()
     }
     public fun addToSolved(uid: String) {
         _listOfSolved.add(uid)

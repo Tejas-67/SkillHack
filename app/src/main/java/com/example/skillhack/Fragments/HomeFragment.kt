@@ -8,16 +8,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
-import androidx.navigation.findNavController
-import androidx.navigation.fragment.findNavController
 import com.example.skillhack.Adapters.ProblemAdapter
 import com.example.skillhack.Models.SharedViewModel
-import com.example.skillhack.R
 import com.example.skillhack.dao.ProblemsDao
-import com.example.skillhack.data.problem
 import com.example.skillhack.databinding.FragmentHomeBinding
-import com.google.common.collect.Iterables
-import com.google.firebase.firestore.DocumentReference
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER

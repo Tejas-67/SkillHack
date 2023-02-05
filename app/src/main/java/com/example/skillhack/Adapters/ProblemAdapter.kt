@@ -1,21 +1,17 @@
 package com.example.skillhack.Adapters
 
-import android.content.Context
-import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.TextView
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
-import com.example.skillhack.Fragments.HomeFragment
 import com.example.skillhack.Fragments.HomeFragmentDirections
 import com.example.skillhack.Models.SharedViewModel
 import com.example.skillhack.R
-import com.example.skillhack.data.problem
+import com.example.skillhack.data.Problem
 
-class ProblemAdapter(val list: List<problem>, val viewModel: SharedViewModel): RecyclerView.Adapter<ProblemAdapter.ProblemViewHolder>() {
+class ProblemAdapter(val list: List<Problem>, val viewModel: SharedViewModel): RecyclerView.Adapter<ProblemAdapter.ProblemViewHolder>() {
 
     override fun getItemCount(): Int {
         return list.size
@@ -34,7 +30,7 @@ class ProblemAdapter(val list: List<problem>, val viewModel: SharedViewModel): R
     }
 
     override fun onBindViewHolder(holder: ProblemViewHolder, position: Int) {
-        val p:problem=list[position]
+        val p:Problem=list[position]
         holder.problemName.text=p.problemname.toString()
         holder.problemDesc.text=p.problemdesc
         holder.deadline.text=p.deadline.toString()

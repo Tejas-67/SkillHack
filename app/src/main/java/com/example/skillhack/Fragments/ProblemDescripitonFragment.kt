@@ -5,11 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import com.example.skillhack.Models.SharedViewModel
-import com.example.skillhack.R
-import com.example.skillhack.data.problem
+import com.example.skillhack.data.Problem
 import com.example.skillhack.databinding.FragmentProblemDescripitonBinding
 
 // TODO: Rename parameter arguments, choose names that match
@@ -24,7 +22,7 @@ private const val ARG_PARAM2 = "param2"
  */
 class ProblemDescripitonFragment : Fragment() {
     // TODO: Rename and change types of parameters
-    private lateinit var p: problem
+    private lateinit var p: Problem
     private var param2: String? = null
 
     private val viewModel: SharedViewModel by activityViewModels()
@@ -33,7 +31,6 @@ class ProblemDescripitonFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-
             param2 = it.getString(ARG_PARAM2)
         }
     }

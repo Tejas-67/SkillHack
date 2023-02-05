@@ -1,6 +1,6 @@
 package com.example.skillhack.data
 
-data class problem(
+data class Problem(
     val deadline:String="",
     val prize:Int=0,
     val problemdesc:String="",
