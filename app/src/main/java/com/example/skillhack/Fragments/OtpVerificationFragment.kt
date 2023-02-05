@@ -172,7 +172,10 @@ class OtpVerificationFragment : Fragment() {
 
                     Toast.makeText(activity, "Authenticated Successfully! ", Toast.LENGTH_LONG).show()
                     progressBar.visibility = View.INVISIBLE
-                    sendToMain()
+                    if(auth.currentUser!!.phoneNumber == "+918460379804")
+                        sendToAdminActivity()
+
+                    else sendToMain()
                 } else {
                     // Sign in failed, display a message and update the UI
                     Log.w(TAG, "signInWithPhoneAuthCredential:failure :${task.exception.toString()}")
@@ -183,6 +186,12 @@ class OtpVerificationFragment : Fragment() {
                 }
             }
     }
+
+    private fun sendToAdminActivity() {
+//        startActivity(Intent(this.requireContext(), AdminActivity::class.java))
+//        requireActivity().finish()
+    }
+
     private fun sendToMain() {
         startActivity(Intent(this.requireContext(), MainActivity::class.java))
         requireActivity().finish()

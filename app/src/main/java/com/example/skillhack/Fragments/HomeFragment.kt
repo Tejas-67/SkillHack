@@ -22,11 +22,7 @@ import com.google.firebase.firestore.DocumentReference
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [HomeFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
+
 class HomeFragment : Fragment() {
 
     private val sharedViewModel: SharedViewModel by activityViewModels()
@@ -85,5 +81,10 @@ class HomeFragment : Fragment() {
             binding.root.findNavController().navigate(action)
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        activity?.finish()
     }
 }

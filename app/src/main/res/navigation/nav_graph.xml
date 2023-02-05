@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/homeFragment">
+    app:startDestination="@id/profileSetupFragment">
 
     <fragment
         android:id="@+id/homeFragment"
@@ -27,4 +27,25 @@
         android:name="com.example.skillhack.Fragments.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/profileSetupFragment"
+        android:name="com.example.skillhack.Fragments.ProfileSetupFragment"
+        android:label="fragment_profile_setup"
+        tools:layout="@layout/fragment_profile_setup" >
+        <action
+            android:id="@+id/action_profileSetupFragment_to_profileSetupSkillFragment"
+            app:destination="@id/profileSetupSkillFragment" />
+        <action
+            android:id="@+id/action_profileSetupFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/profileSetupSkillFragment"
+        android:name="com.example.skillhack.Fragments.ProfileSetupSkillFragment"
+        android:label="fragment_profile_setup_skill"
+        tools:layout="@layout/fragment_profile_setup_skill" >
+        <action
+            android:id="@+id/action_profileSetupSkillFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
 </navigation>

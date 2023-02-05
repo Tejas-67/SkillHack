@@ -7,5 +7,6 @@ class User (
     var problems: ArrayList<Map<String,String>> = arrayListOf(mapOf()),
     var rewardsEarned: Int = 0,
     var skills :ArrayList<String> = arrayListOf(),
-    var mobileNumber : String = ""
+    var mobileNumber : String = "",
+    var dob: String = ""
 )
