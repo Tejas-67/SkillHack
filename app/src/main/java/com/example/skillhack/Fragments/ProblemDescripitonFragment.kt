@@ -6,7 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.activityViewModels
+import com.example.skillhack.Models.SharedViewModel
 import com.example.skillhack.R
+import com.example.skillhack.data.problem
 import com.example.skillhack.databinding.FragmentProblemDescripitonBinding
 
 // TODO: Rename parameter arguments, choose names that match
@@ -21,15 +24,16 @@ private const val ARG_PARAM2 = "param2"
  */
 class ProblemDescripitonFragment : Fragment() {
     // TODO: Rename and change types of parameters
-    private var uid: String? = null
+    private lateinit var p: problem
     private var param2: String? = null
 
+    private val viewModel: SharedViewModel by activityViewModels()
     private var _binding: FragmentProblemDescripitonBinding?=null
     private val binding get()=_binding!!
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            uid = it.getString("UID")
+
             param2 = it.getString(ARG_PARAM2)
         }
     }
@@ -45,8 +49,17 @@ class ProblemDescripitonFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.driveLinkSubmitButton.setOnClickListener { Toast.makeText(requireContext(), "Working fine $uid", Toast.LENGTH_SHORT).show() }
+       // binding.driveLinkSubmitButton.setOnClickListener { Toast.makeText(requireContext(), "Working fine $uid", Toast.LENGTH_SHORT).show() }
+        binding.problemDescriptionTv.text=viewModel.currproblem?.problemdesc
+        binding.problemStatementTv.text= viewModel.currproblem?.problemname
+        binding.deadlineTv.text=viewModel.currproblem?.deadline
+        binding.cashPrizeTv.text=viewModel.currproblem?.prize.toString()
 
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        viewModel.nullCurrProb()
     }
 
     companion object {

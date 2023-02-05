@@ -1,15 +1,21 @@
 package com.example.skillhack.Adapters
 
+import android.content.Context
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import com.example.skillhack.Fragments.HomeFragment
+import com.example.skillhack.Fragments.HomeFragmentDirections
+import com.example.skillhack.Models.SharedViewModel
 import com.example.skillhack.R
 import com.example.skillhack.data.problem
 
-class ProblemAdapter(val list: List<problem>): RecyclerView.Adapter<ProblemAdapter.ProblemViewHolder>() {
+class ProblemAdapter(val list: List<problem>, val viewModel: SharedViewModel): RecyclerView.Adapter<ProblemAdapter.ProblemViewHolder>() {
 
     override fun getItemCount(): Int {
         return list.size
@@ -19,7 +25,7 @@ class ProblemAdapter(val list: List<problem>): RecyclerView.Adapter<ProblemAdapt
         val problemDesc=view.findViewById<TextView>(R.id.cardview_problem_desc)
         val deadline=view.findViewById<TextView>(R.id.deadline_tv)
         val prize=view.findViewById<TextView>(R.id.cash_prize_tv)
-
+        val viewMoreBtn=view.findViewById<TextView>(R.id.view_more_btn)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProblemViewHolder {
@@ -34,6 +40,15 @@ class ProblemAdapter(val list: List<problem>): RecyclerView.Adapter<ProblemAdapt
         holder.deadline.text=p.deadline.toString()
         holder.prize.text=p.prize.toString()
 
+        holder.viewMoreBtn.setOnClickListener {
+
+            val action=HomeFragmentDirections.actionHomeFragmentToProblemDescripitonFragment()
+            viewModel.updateCurrProblem(list[position])
+            holder.view.findNavController().navigate(action)
+
+        }
     }
 
 }
+
+

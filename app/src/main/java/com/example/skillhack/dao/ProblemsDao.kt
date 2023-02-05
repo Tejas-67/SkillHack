@@ -13,16 +13,16 @@ class ProblemsDao {
         Log.d("firebase", "Function Reached")
         problemList.get()
             .addOnSuccessListener { documents->
-                Log.w("firebase", "Success entered")
+                Log.e("firebase", "Success entered")
                 for(document in documents) {
                     val problem = document.toObject(problem::class.java)
                     problems.add(problem)
                 }
                 callback(problems)
-                Log.w("firebase", problems.toString())
+                Log.e("firebase", problems.toString())
             }
             .addOnFailureListener { e->
-                Log.w("firebase", "Error : $e")
+                Log.e("firebase", "Error : $e")
             }
         return problems
     }

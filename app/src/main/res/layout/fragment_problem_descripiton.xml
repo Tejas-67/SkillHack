@@ -27,6 +27,45 @@
 
             android:text="This textview would be displaying the problem description for the problem statement. I am not good at layout stuff so would be leaving it here.
 Signing Off."/>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/nouse_tv"
+            android:text="Prize Money:"
+            android:paddingLeft="24dp"
+            android:paddingTop="10dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/cash_prize_tv"
+            android:text="10000"
+            android:paddingLeft="5dp"
+            android:paddingTop="10dp"/>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/nousedeadline_tv"
+            android:text="Deadline:"
+            android:paddingTop="10dp"
+            android:paddingLeft="24dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/deadline_tv"
+            android:text="23-02-2023"
+            android:paddingLeft="5dp"
+            android:paddingTop="10dp"/>
+    </LinearLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/drive_link_input_textinputlayout"
@@ -45,6 +84,11 @@ Signing Off."/>
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="Submit"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Start Solving"
+            android:id="@+id/start_solving_btn"/>
 
 
     </LinearLayout>

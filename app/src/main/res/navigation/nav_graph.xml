@@ -16,8 +16,6 @@
         android:id="@+id/problemDescripitonFragment"
         android:name="com.example.skillhack.Fragments.ProblemDescripitonFragment"
         android:label="ProblemDescripitonFragment" >
-        <argument
-            android:name="UID"
-            app:argType="string" />
+
     </fragment>
 </navigation>
