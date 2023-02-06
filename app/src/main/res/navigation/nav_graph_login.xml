@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph_login"
     app:startDestination="@id/loginPhoneNumberFragment">
 
@@ -22,5 +23,37 @@
         <argument
             android:name="resendToken"
             app:argType="com.google.firebase.auth.PhoneAuthProvider$ForceResendingToken" />
+        <action
+            android:id="@+id/action_otpVerificationFragment_to_profileSetupFragment2"
+            app:destination="@id/profileSetupFragment2" />
+        <action
+            android:id="@+id/action_otpVerificationFragment_to_profileSetupFragment"
+            app:destination="@id/profileSetupFragment" />
+        <action
+            android:id="@+id/action_otpVerificationFragment_to_mainActivity"
+            app:destination="@id/mainActivity" />
     </fragment>
+    <fragment
+        android:id="@+id/profileSetupFragment"
+        android:name="com.example.skillhack.Fragments.ProfileSetupFragment"
+        android:label="fragment_profile_setup"
+        tools:layout="@layout/fragment_profile_setup" >
+        <action
+            android:id="@+id/action_profileSetupFragment_to_profileSetupSkillFragment"
+            app:destination="@id/profileSetupSkillFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/profileSetupSkillFragment"
+        android:name="com.example.skillhack.Fragments.ProfileSetupSkillFragment"
+        android:label="fragment_profile_setup_skill"
+        tools:layout="@layout/fragment_profile_setup_skill" >
+        <action
+            android:id="@+id/action_profileSetupSkillFragment_to_mainActivity"
+            app:destination="@id/mainActivity" />
+    </fragment>
+    <activity
+        android:id="@+id/mainActivity"
+        android:name="com.example.skillhack.Activities.MainActivity"
+        android:label="activity_main"
+        tools:layout="@layout/activity_main" />
 </navigation>

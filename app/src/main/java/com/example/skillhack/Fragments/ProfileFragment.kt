@@ -1,11 +1,19 @@
 package com.example.skillhack.Fragments
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.bumptech.glide.Glide
 import com.example.skillhack.R
+import com.example.skillhack.dao.UserDao
+import com.example.skillhack.databinding.FragmentProfileBinding
+import com.google.firebase.auth.FirebaseAuth
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -18,10 +26,11 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  */
 class ProfileFragment : Fragment() {
-    // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
-
+    private lateinit var auth:FirebaseAuth
+    private var _binding: FragmentProfileBinding?=null
+    private val binding get()=_binding!!
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -34,8 +43,34 @@ class ProfileFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_profile, container, false)
+        _binding=FragmentProfileBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.profilesectionSV.visibility=View.GONE
+        auth=FirebaseAuth.getInstance()
+        val userDao= UserDao()
+        userDao.getUser(auth.currentUser!!.phoneNumber!!){ user->
+            binding.profilepageprogressbar.visibility=View.GONE
+            binding.profilesectionSV.visibility=View.VISIBLE
+
+            binding.userNameTv.text=user.name
+            binding.phoneNumberTv.text=user.mobileNumber
+            binding.profilePageRewardsearnedtv.text=user.rewardsEarned.toString()
+            binding.profilePageProblemsolvedtv.text=user.problemCount.toString()
+
+            if(user.image!=null) Glide.with(requireContext()).load(user.image).into(binding.userImageview)
+        }
+//        userDao.getUser { user->
+//            Log.w("TEJAS", "Updating User ${user.name}")
+//
+////            binding.userNameTv.text=user.name.toString()
+////            binding.phoneNumberTv.text=user.mobileNumber.toString()
+////            binding.profilePageRewardsearnedtv.text=user.rewardsEarned.toString()
+////            binding.profilePageProblemsolvedtv.text=user.problemCount.toString()
+//        }
     }
 
     companion object {
