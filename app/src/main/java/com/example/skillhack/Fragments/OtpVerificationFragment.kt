@@ -16,6 +16,7 @@ import android.widget.*
 import com.example.skillhack.Activities.MainActivity
 import com.example.skillhack.databinding.FragmentOtpVerificationBinding
 import com.example.skillhack.R
+import com.example.skillhack.dao.UserDao
 import com.google.firebase.FirebaseException
 import com.google.firebase.FirebaseTooManyRequestsException
 import com.google.firebase.auth.*
@@ -174,10 +175,12 @@ class OtpVerificationFragment : Fragment() {
                     progressBar.visibility = View.INVISIBLE
 
 
-                    if(auth.currentUser!!.phoneNumber == "+918460379804")
-                        sendToAdminActivity()
-
-                    else sendToMain()
+//                    if(auth.currentUser!!.phoneNumber == "+918460379804")
+//                        sendToAdminActivity()
+                    val userDao=UserDao()
+//                    userDao.checkNumberAlreadyExists(auth.currentUser!!.phoneNumber!!){
+//
+//                        }
                 } else {
                     // Sign in failed, display a message and update the UI
                     Log.w(TAG, "signInWithPhoneAuthCredential:failure :${task.exception.toString()}")
