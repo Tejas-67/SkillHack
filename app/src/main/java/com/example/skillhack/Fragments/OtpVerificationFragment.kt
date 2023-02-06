@@ -172,6 +172,8 @@ class OtpVerificationFragment : Fragment() {
 
                     Toast.makeText(activity, "Authenticated Successfully! ", Toast.LENGTH_LONG).show()
                     progressBar.visibility = View.INVISIBLE
+
+
                     if(auth.currentUser!!.phoneNumber == "+918460379804")
                         sendToAdminActivity()
 
