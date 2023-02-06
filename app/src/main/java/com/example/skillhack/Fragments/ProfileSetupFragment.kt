@@ -32,25 +32,23 @@ class ProfileSetupFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var auth : FirebaseAuth
     private val db = FirebaseFirestore.getInstance()
+    private lateinit var phoneNumber: String
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        arguments?.let {
+            phoneNumber= it.getString("phonenumber").toString()
+
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        auth = Firebase.auth
-        GlobalScope.launch(Dispatchers.Main) {
-            val userDao = UserDao()
-            if(userDao.checkNumberAlreadyExists(auth.currentUser!!.phoneNumber!!))
-            {
 
-                    Log.e(TAG, "Account already created.....")
-                    val action =
-                        ProfileSetupFragmentDirections.actionProfileSetupFragmentToHomeFragment()
-                    binding.root.findNavController().navigate(action)
-
-            }
-        }
         _binding= FragmentProfileSetupBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -59,7 +57,7 @@ class ProfileSetupFragment : Fragment() {
 
         val datePicker = binding.datePicker1
         val today = Calendar.getInstance()
-
+        auth = Firebase.auth
         datePicker.init(today.get(Calendar.YEAR), today.get(Calendar.MONTH),
             today.get(Calendar.DAY_OF_MONTH)
 
@@ -69,11 +67,12 @@ class ProfileSetupFragment : Fragment() {
 //            Toast.makeText(this.requireContext(), msg, Toast.LENGTH_SHORT).show()
         }
         binding.submitButton.setOnClickListener{
-
-            val user = User(0,"",binding.userNameEditText.text.toString(), arrayListOf(mapOf()), 0, arrayListOf(),auth.currentUser!!.phoneNumber!!,datePicker.dayOfMonth.toString()+"-"+datePicker.month.toString()+"-"+datePicker.year.toString())
+            val dob=(datePicker.dayOfMonth.toString()+"-"+datePicker.month.toString()+"-"+datePicker.year.toString())
+            val name=binding.userNameEditText.text.toString()
+            val user = User(0,"",name, arrayListOf(mapOf()), 0, arrayListOf(),auth.currentUser!!.phoneNumber!!,dob)
             db.collection("users").document(user.mobileNumber).set(user)
                 .addOnSuccessListener {
-                    val action =ProfileSetupFragmentDirections.actionProfileSetupFragmentToProfileSetupSkillFragment()
+                    val action =ProfileSetupFragmentDirections.actionProfileSetupFragmentToProfileSetupSkillFragment(name=name, phonenumber=phoneNumber, dateofbirth = dob)
                     binding.root.findNavController().navigate(action)
                 }
                 .addOnFailureListener {
@@ -82,6 +81,11 @@ class ProfileSetupFragment : Fragment() {
         }
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        auth.signOut()
+        activity?.finish()
+    }
 
 
 }
