@@ -44,6 +44,9 @@
         <action
             android:id="@+id/action_profileSetupFragment_to_profileSetupSkillFragment"
             app:destination="@id/profileSetupSkillFragment" />
+        <argument
+            android:name="phonenumber"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/profileSetupSkillFragment"
@@ -53,6 +56,15 @@
         <action
             android:id="@+id/action_profileSetupSkillFragment_to_mainActivity"
             app:destination="@id/mainActivity" />
+        <argument
+            android:name="name"
+            app:argType="string" />
+        <argument
+            android:name="phonenumber"
+            app:argType="string" />
+        <argument
+            android:name="dateofbirth"
+            app:argType="string" />
     </fragment>
     <activity
         android:id="@+id/mainActivity"

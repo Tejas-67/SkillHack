@@ -58,6 +58,7 @@ class OtpVerificationFragment : Fragment() {
             resendToken= it.getParcelable("resendToken")!!
             Log.e(TAG, "this is resendtoken:$resendToken" )
             OTP= it.getString("otp").toString()
+
         }
     }
     override fun onCreateView(
@@ -189,7 +190,7 @@ class OtpVerificationFragment : Fragment() {
                         else
                         {
                             progressBar.visibility = View.INVISIBLE
-                            val action = OtpVerificationFragmentDirections.actionOtpVerificationFragmentToProfileSetupFragment()
+                            val action = OtpVerificationFragmentDirections.actionOtpVerificationFragmentToProfileSetupFragment(phonenumber = phoneNumber)
                             binding.root.findNavController().navigate(action)
                         }
                     }

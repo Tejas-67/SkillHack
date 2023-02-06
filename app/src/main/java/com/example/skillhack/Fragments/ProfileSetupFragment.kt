@@ -32,6 +32,16 @@ class ProfileSetupFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var auth : FirebaseAuth
     private val db = FirebaseFirestore.getInstance()
+    private lateinit var phoneNumber: String
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        arguments?.let {
+            phoneNumber= it.getString("phonenumber").toString()
+
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -57,11 +67,12 @@ class ProfileSetupFragment : Fragment() {
 //            Toast.makeText(this.requireContext(), msg, Toast.LENGTH_SHORT).show()
         }
         binding.submitButton.setOnClickListener{
-
-            val user = User(0,"",binding.userNameEditText.text.toString(), arrayListOf(mapOf()), 0, arrayListOf(),auth.currentUser!!.phoneNumber!!,datePicker.dayOfMonth.toString()+"-"+datePicker.month.toString()+"-"+datePicker.year.toString())
+            val dob=(datePicker.dayOfMonth.toString()+"-"+datePicker.month.toString()+"-"+datePicker.year.toString())
+            val name=binding.userNameEditText.text.toString()
+            val user = User(0,"",name, arrayListOf(mapOf()), 0, arrayListOf(),auth.currentUser!!.phoneNumber!!,dob)
             db.collection("users").document(user.mobileNumber).set(user)
                 .addOnSuccessListener {
-                    val action =ProfileSetupFragmentDirections.actionProfileSetupFragmentToProfileSetupSkillFragment()
+                    val action =ProfileSetupFragmentDirections.actionProfileSetupFragmentToProfileSetupSkillFragment(name=name, phonenumber=phoneNumber, dateofbirth = dob)
                     binding.root.findNavController().navigate(action)
                 }
                 .addOnFailureListener {
