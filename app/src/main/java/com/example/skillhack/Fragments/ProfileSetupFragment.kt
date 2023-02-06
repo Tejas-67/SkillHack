@@ -38,19 +38,7 @@ class ProfileSetupFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        auth = Firebase.auth
-        GlobalScope.launch(Dispatchers.Main) {
-            val userDao = UserDao()
-            if(userDao.checkNumberAlreadyExists(auth.currentUser!!.phoneNumber!!))
-            {
 
-                    Log.e(TAG, "Account already created.....")
-                    val action =
-                        ProfileSetupFragmentDirections.actionProfileSetupFragmentToHomeFragment()
-                    binding.root.findNavController().navigate(action)
-
-            }
-        }
         _binding= FragmentProfileSetupBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -59,7 +47,7 @@ class ProfileSetupFragment : Fragment() {
 
         val datePicker = binding.datePicker1
         val today = Calendar.getInstance()
-
+        auth = Firebase.auth
         datePicker.init(today.get(Calendar.YEAR), today.get(Calendar.MONTH),
             today.get(Calendar.DAY_OF_MONTH)
 
@@ -82,6 +70,11 @@ class ProfileSetupFragment : Fragment() {
         }
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        auth.signOut()
+        activity?.finish()
+    }
 
 
 }

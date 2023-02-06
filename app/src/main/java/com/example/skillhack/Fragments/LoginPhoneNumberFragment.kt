@@ -12,6 +12,7 @@ import android.widget.Toast
 import androidx.navigation.Navigation.findNavController
 import androidx.navigation.findNavController
 import com.example.skillhack.Activities.MainActivity
+import com.example.skillhack.dao.UserDao
 import com.example.skillhack.databinding.FragmentLoginPhoneNumberBinding
 import com.google.android.gms.tasks.Task
 import com.google.firebase.FirebaseException
@@ -112,10 +113,7 @@ class LoginPhoneNumberFragment : Fragment() {
             verificationId: String,
             token: PhoneAuthProvider.ForceResendingToken
         ) {
-            // The SMS verification code has been sent to the provided phone number, we
-            // now need to ask the user to enter the code and then construct a credential
-            // by combining the code with a verification ID.
-//            Log.e(TAG, "Phone Number kya he:${auth.currentUser!!.phoneNumber!!}")
+
             GlobalScope.launch {
                 withContext(Dispatchers.Main) {
                     Log.e(TAG, "onCodeSent :$verificationId")
@@ -156,21 +154,40 @@ class LoginPhoneNumberFragment : Fragment() {
 
 
     private fun updateUI(firebaseUser: FirebaseUser?) {
-        if (firebaseUser != null)
-        {
-            val mainActivityIntent = Intent(this.requireContext(), MainActivity::class.java)
-            startActivity(mainActivityIntent)
-            activity?.finish()
+        if(auth.currentUser!!.phoneNumber == "+918460379855")
+            sendToAdminActivity()
+
+        GlobalScope.launch(Dispatchers.Main) {
+            val userDao = UserDao()
+            if(userDao.checkNumberAlreadyExists(auth.currentUser!!.phoneNumber!!))
+            {
+                Log.e(TAG, "Account already created.....")
+                sendToMain()
+            }
+            else
+            {
+                val action = LoginPhoneNumberFragmentDirections.actionLoginPhoneNumberFragmentToProfileSetupFragment()
+                binding.root.findNavController().navigate(action)
+            }
         }
+
+    }
+    private fun sendToMain() {
+        startActivity(Intent(this.requireContext(), MainActivity::class.java))
+        activity?.finish()
+    }
+    private fun sendToAdminActivity() {
+//        startActivity(Intent(this.requireContext(), AdminActivity::class.java))
+//        requireActivity().finish()
     }
     override fun onStart() {
-        super.onStart()
         // Check if user is signed in (non-null) and update UI accordingly.
         val currentUser = auth.currentUser
         if(currentUser != null){
 //            Toast.makeText(this.requireContext(),"Already Signed in.. Redirecting..${currentUser.phoneNumber}", Toast.LENGTH_SHORT).show()
-            updateUI(currentUser)
+            sendToMain()
         }
+        super.onStart()
     }
     override fun onDestroy() {
         super.onDestroy()

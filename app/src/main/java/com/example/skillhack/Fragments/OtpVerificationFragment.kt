@@ -13,6 +13,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.example.skillhack.Activities.MainActivity
 import com.example.skillhack.databinding.FragmentOtpVerificationBinding
 import com.example.skillhack.R
@@ -24,6 +26,9 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 import io.grpc.InternalChannelz.id
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 
 import java.util.concurrent.TimeUnit
@@ -170,17 +175,26 @@ class OtpVerificationFragment : Fragment() {
                 if (task.isSuccessful) {
                     // Sign in success, update UI with the signed-in user's information
                     Log.d(TAG, "signInWithCredential:success1")
-
                     Toast.makeText(activity, "Authenticated Successfully! ", Toast.LENGTH_LONG).show()
-                    progressBar.visibility = View.INVISIBLE
+                    if(auth.currentUser!!.phoneNumber == "+918460379804")
+                        sendToAdminActivity()
+
+                    GlobalScope.launch(Dispatchers.Main) {
+                        val userDao = UserDao()
+                        if(userDao.checkNumberAlreadyExists(auth.currentUser!!.phoneNumber!!))
+                        {
+                            Log.e(TAG, "Account already created.....")
+                            sendToMain()
+                        }
+                        else
+                        {
+                            progressBar.visibility = View.INVISIBLE
+                            val action = OtpVerificationFragmentDirections.actionOtpVerificationFragmentToProfileSetupFragment()
+                            binding.root.findNavController().navigate(action)
+                        }
+                    }
 
 
-//                    if(auth.currentUser!!.phoneNumber == "+918460379804")
-//                        sendToAdminActivity()
-                    val userDao=UserDao()
-//                    userDao.checkNumberAlreadyExists(auth.currentUser!!.phoneNumber!!){
-//
-//                        }
                 } else {
                     // Sign in failed, display a message and update the UI
                     Log.w(TAG, "signInWithPhoneAuthCredential:failure :${task.exception.toString()}")

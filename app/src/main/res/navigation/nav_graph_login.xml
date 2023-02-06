@@ -12,6 +12,9 @@
         <action
             android:id="@+id/action_loginPhoneNumberFragment_to_otpVerificationFragment"
             app:destination="@id/otpVerificationFragment" />
+        <action
+            android:id="@+id/action_loginPhoneNumberFragment_to_profileSetupFragment"
+            app:destination="@id/profileSetupFragment" />
     </fragment>
     <fragment
         android:id="@+id/otpVerificationFragment"
@@ -25,7 +28,7 @@
             app:argType="com.google.firebase.auth.PhoneAuthProvider$ForceResendingToken" />
         <action
             android:id="@+id/action_otpVerificationFragment_to_profileSetupFragment2"
-            app:destination="@id/profileSetupFragment2" />
+            app:destination="@id/profileSetupFragment" />
         <action
             android:id="@+id/action_otpVerificationFragment_to_profileSetupFragment"
             app:destination="@id/profileSetupFragment" />

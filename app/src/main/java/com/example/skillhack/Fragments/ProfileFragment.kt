@@ -61,7 +61,11 @@ class ProfileFragment : Fragment() {
             binding.profilePageRewardsearnedtv.text=user.rewardsEarned.toString()
             binding.profilePageProblemsolvedtv.text=user.problemCount.toString()
 
-            if(user.image!=null) Glide.with(requireContext()).load(user.image).into(binding.userImageview)
+            Glide.with(requireContext()).load(user.image).into(binding.userImageview)
+        }
+        binding.logOutTv.setOnClickListener{
+            auth.signOut()
+            activity?.finish()
         }
 //        userDao.getUser { user->
 //            Log.w("TEJAS", "Updating User ${user.name}")
