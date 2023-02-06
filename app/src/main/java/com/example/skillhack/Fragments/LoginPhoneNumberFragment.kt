@@ -166,7 +166,7 @@ class LoginPhoneNumberFragment : Fragment() {
             }
             else
             {
-                val action = LoginPhoneNumberFragmentDirections.actionLoginPhoneNumberFragmentToProfileSetupFragment()
+                val action = LoginPhoneNumberFragmentDirections.actionLoginPhoneNumberFragmentToProfileSetupFragment({123456}.toString())
                 binding.root.findNavController().navigate(action)
             }
         }

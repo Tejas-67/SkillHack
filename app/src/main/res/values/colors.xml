@@ -15,5 +15,6 @@
     <color name="primary_color">#E30404</color>
     <color name="background">#F84A4A</color>
     <color name="blue">#0F4FE5</color>
+    <color name="halfwhite">#f0ffff</color>
 
 </resources>

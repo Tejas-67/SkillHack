@@ -11,6 +11,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:padding="5dp"
             android:orientation="horizontal">
 
             <TextView
@@ -27,6 +28,7 @@
 
         <TextView
             android:id="@+id/problem_desc_tv"
+            android:layout_margin="5dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Pick a problem and stand chance to win cash rewards"
@@ -35,6 +37,7 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/problem_list_rcv"
+            android:layout_gravity="center"
             android:layout_width="match_parent"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             android:paddingTop="24dp"
