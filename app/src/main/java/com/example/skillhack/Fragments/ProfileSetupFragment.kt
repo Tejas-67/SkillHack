@@ -70,11 +70,7 @@ class ProfileSetupFragment : Fragment() {
         }
         binding.submitButton.setOnClickListener{
 
-            val user = User()
-            user.name = binding.userNameEditText.text.toString()
-//            Log.e(TAG, "binding.userName->"+ binding.userName.toString())
-            user.dob = datePicker.dayOfMonth.toString()+"-"+datePicker.month.toString()+"-"+datePicker.year.toString()
-            user.mobileNumber = auth.currentUser!!.phoneNumber!!
+            val user = User(0,"",binding.userNameEditText.text.toString(), arrayListOf(mapOf()), 0, arrayListOf(),auth.currentUser!!.phoneNumber!!,datePicker.dayOfMonth.toString()+"-"+datePicker.month.toString()+"-"+datePicker.year.toString())
             db.collection("users").document(user.mobileNumber).set(user)
                 .addOnSuccessListener {
                     val action =ProfileSetupFragmentDirections.actionProfileSetupFragmentToProfileSetupSkillFragment()

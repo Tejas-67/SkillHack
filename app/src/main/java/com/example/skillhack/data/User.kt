@@ -1,6 +1,6 @@
 package com.example.skillhack.data
 
-class User (
+data class User (
     var problemCount :Int =0,
     var image: String = "",
     var name: String ="",
