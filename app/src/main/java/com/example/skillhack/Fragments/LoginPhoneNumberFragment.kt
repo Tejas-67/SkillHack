@@ -121,7 +121,8 @@ class LoginPhoneNumberFragment : Fragment() {
                     val action =
                         LoginPhoneNumberFragmentDirections.actionLoginPhoneNumberFragmentToOtpVerificationFragment(
                             resendToken = token, otp =
-                            verificationId
+                            verificationId,
+                            phoneNumber = phoneNumber
                         )
                     binding.getOtpProgressBar.visibility = View.INVISIBLE
                     binding.root.findNavController().navigate(action)
@@ -166,8 +167,10 @@ class LoginPhoneNumberFragment : Fragment() {
             }
             else
             {
-                val action = LoginPhoneNumberFragmentDirections.actionLoginPhoneNumberFragmentToProfileSetupFragment({123456}.toString())
+                Log.e(TAG, "...............ck1................")
+                val action = LoginPhoneNumberFragmentDirections.actionLoginPhoneNumberFragmentToProfileSetupFragment(phoneNumber)
                 binding.root.findNavController().navigate(action)
+                Log.e(TAG, "...............ck2................")
             }
         }
 

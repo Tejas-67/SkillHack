@@ -1,8 +1,10 @@
 package com.example.skillhack.dao
 
+import android.content.Context
 import android.util.Log
 import androidx.navigation.findNavController
 import com.example.skillhack.Fragments.ProfileSetupFragmentDirections
+import com.example.skillhack.Fragments.ProfileSetupSkillFragment
 import com.example.skillhack.data.Problem
 import com.example.skillhack.data.User
 import com.google.firebase.auth.FirebaseAuth
@@ -27,6 +29,23 @@ class UserDao {
 
         return flag
 
+    }
+    fun addUserSkills(phoneNumber: String, name: String, dob: String, skills:MutableList<String>, context: Context)
+    {
+        val user = User()
+        user.name = name
+        user.dob = dob
+        user.mobileNumber = phoneNumber
+        if(skills.isEmpty()) Log.e(TAG, "in addUserSkills skills is getting null")
+        user.skills = ArrayList(skills)
+
+        db.collection("users").document(phoneNumber).set(user)
+            .addOnSuccessListener {
+                Log.e(TAG, "skills added")
+            }
+            .addOnFailureListener {
+                Log.e(TAG, "Internet connection problem")
+            }
     }
     fun getUser(phoneNumber:String, callback:(User) -> Unit){
         //val phoneNumber=auth.currentUser!!.phoneNumber!!

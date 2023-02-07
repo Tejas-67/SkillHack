@@ -63,21 +63,15 @@ class ProfileSetupFragment : Fragment() {
 
         ) { view, year, month, day ->
             val month = month + 1
-//            val msg = "You Selected: $day/$month/$year"
-//            Toast.makeText(this.requireContext(), msg, Toast.LENGTH_SHORT).show()
+
         }
         binding.submitButton.setOnClickListener{
             val dob=(datePicker.dayOfMonth.toString()+"-"+datePicker.month.toString()+"-"+datePicker.year.toString())
             val name=binding.userNameEditText.text.toString()
             val user = User(0,"",name, arrayListOf(mapOf()), 0, arrayListOf(),auth.currentUser!!.phoneNumber!!,dob)
-            db.collection("users").document(user.mobileNumber).set(user)
-                .addOnSuccessListener {
-                    val action =ProfileSetupFragmentDirections.actionProfileSetupFragmentToProfileSetupSkillFragment(name=name, phonenumber=phoneNumber, dateofbirth = dob)
-                    binding.root.findNavController().navigate(action)
-                }
-                .addOnFailureListener {
-                    Toast.makeText(this.requireContext(), "Check your network connection", Toast.LENGTH_SHORT).show()
-                }
+            val action =ProfileSetupFragmentDirections.actionProfileSetupFragmentToProfileSetupSkillFragment(name=name, phonenumber=phoneNumber, dateofbirth = dob)
+            binding.root.findNavController().navigate(action)
+
         }
     }
 

@@ -9,10 +9,13 @@ import android.widget.Toast
 import com.example.skillhack.Adapters.SkillAdapter
 import com.example.skillhack.R
 import com.example.skillhack.dao.ProblemsDao
+import com.example.skillhack.dao.UserDao
 import com.example.skillhack.databinding.FragmentProfileSetupSkillBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -22,18 +25,18 @@ private const val ARG_PARAM2 = "param2"
 
 class ProfileSetupSkillFragment : Fragment() {
 
-    private var dob: String? = null
-    private var name: String? = null
-    private var phonenumber: String?=null
+    private lateinit var dob: String
+    private lateinit var name: String
+    private lateinit var phonenumber: String
     private lateinit var auth:FirebaseAuth
     private var _binding: FragmentProfileSetupSkillBinding?=null
     private val binding get()=_binding!!
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            name=it.getString("name")
-            dob=it.getString("dateofbirth")
-            phonenumber=it.getString("phonenumber")
+            name=it.getString("name")!!
+            dob=it.getString("dateofbirth")!!
+            phonenumber=it.getString("phonenumber")!!
         }
     }
 
@@ -50,10 +53,15 @@ class ProfileSetupSkillFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val pd=ProblemsDao()
-        pd.getSkills { skills->
-            binding.skillPageRCV.adapter=SkillAdapter(skills, pd)
-            Toast.makeText(requireContext(),"Select At most 6 skills", Toast.LENGTH_LONG).show()
+
+            val pd=ProblemsDao()
+        GlobalScope.launch {
+            pd.getSkills { skills ->
+                binding.skillPageRCV.adapter = SkillAdapter(skills, pd)
+                Toast.makeText(requireContext(), "Select At most 6 skills", Toast.LENGTH_LONG)
+                    .show()
+            }
+
         }
         val skill= mutableListOf<String>()
         binding.skillPageSubmitBtn.setOnClickListener {
@@ -63,9 +71,17 @@ class ProfileSetupSkillFragment : Fragment() {
             }
 
             //add user to database
-
+            val userDao = UserDao()
+            userDao.addUserSkills(phonenumber, name , dob, skill, this.requireContext())
         }
 
+
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        auth.signOut()
+        activity?.finish()
     }
 }
 //var problemCount :Int=0,
