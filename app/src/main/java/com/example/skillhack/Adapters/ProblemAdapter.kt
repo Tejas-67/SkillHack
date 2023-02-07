@@ -38,7 +38,8 @@ class ProblemAdapter(val list: List<Problem>): RecyclerView.Adapter<ProblemAdapt
 
         holder.viewMoreBtn.setOnClickListener {
 
-            val action=HomeFragmentDirections.actionHomeFragmentToProblemDescripitonFragment(problemname = p.problemname, problemdesc = p.problemdesc, deadline = p.deadline, prize = p.prize)
+            val action=HomeFragmentDirections.actionHomeFragmentToProblemDescripitonFragment(problemname = p.problemname, problemdesc = p.problemdesc, deadline = p.deadline, prize = p.prize, problemId = p.pid
+            )
 
             holder.view.findNavController().navigate(action)
 

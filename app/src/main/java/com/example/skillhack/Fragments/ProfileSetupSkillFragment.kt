@@ -73,7 +73,6 @@ class ProfileSetupSkillFragment : Fragment() {
 
         }
         binding.skillPageSubmitBtn.setOnClickListener {
-//            Log.e("setup skill", "size of sills.......${sizeof(skills)}")
             binding.progressBar.visibility = View.VISIBLE
             GlobalScope.launch(Dispatchers.Main) {
 

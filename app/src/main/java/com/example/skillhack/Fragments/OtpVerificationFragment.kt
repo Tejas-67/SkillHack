@@ -183,12 +183,13 @@ class OtpVerificationFragment : Fragment() {
                     if(auth.currentUser!!.phoneNumber == "+918460379804")
                         sendToAdminActivity()
                     else {
-                        GlobalScope.launch {
+                        GlobalScope.launch(Dispatchers.Main) {
                             val userDao = UserDao()
                             if (userDao.checkNumberAlreadyExists(auth.currentUser!!.phoneNumber!!)) {
                                 Log.e(TAG, "Account already created.....")
                                 sendToMain()
                             } else {
+
                                 progressBar.visibility = View.INVISIBLE
                                 Log.e(TAG, "...............ck1................")
                                 val action =

@@ -1,14 +1,22 @@
 package com.example.skillhack.Fragments
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import com.example.skillhack.Models.SharedViewModel
+import com.example.skillhack.dao.UserDao
 import com.example.skillhack.data.Problem
+import com.example.skillhack.data.User
 import com.example.skillhack.databinding.FragmentProblemDescripitonBinding
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -27,6 +35,9 @@ class ProblemDescripitonFragment : Fragment() {
     private var pdesc: String? = null
     private var deadline: String? = null
     private var prize: Int? = null
+    private var problemId : String? = null
+
+    private var phoneNumber = Firebase.auth.currentUser!!.phoneNumber!!
 
   //  private val viewModel: SharedViewModel by activityViewModels()
     private var _binding: FragmentProblemDescripitonBinding?=null
@@ -39,6 +50,7 @@ class ProblemDescripitonFragment : Fragment() {
             pdesc=it.getString("problemdesc")
             deadline=it.getString("deadline")
             prize=it.getInt("prize")
+            problemId = it.getString("problemId")
         }
     }
 
@@ -64,12 +76,27 @@ class ProblemDescripitonFragment : Fragment() {
             binding.driveLinkSubmitButton.visibility=View.VISIBLE
             binding.driveLinkInputTexteditlayout.visibility=View.VISIBLE
         }
-       // binding.driveLinkSubmitButton.setOnClickListener { Toast.makeText(requireContext(), "Working fine $uid", Toast.LENGTH_SHORT).show() }
+        binding.driveLinkSubmitButton.setOnClickListener {
+//            binding.ProgressBar.visibility = View.VISIBLE
+            binding.driveLinkInputTexteditlayout.visibility = View.GONE
+            val solution = binding.driveLinkInputTexteditlayout.text.toString()
+            GlobalScope.launch {
+                Log.e("desc","phoneNumber -> ${phoneNumber} problemId -> ${problemId} solution -> $solution" )
+                UserDao().getUser(phoneNumber){ user->
+                    Log.e("desc", " this is null ")
+                    user.problems.add(mapOf(problemId!! to solution))
+                    user.problemCount += 1
+                    UserDao().addUser(user)
+//                    binding.ProgressBar.visibility = View.GONE
+                }
+            }
+        }
         binding.startSolvingBtn.setOnClickListener{
             binding.startSolvingBtn.visibility=View.INVISIBLE
             binding.driveLinkSubmitButton.visibility=View.VISIBLE
             binding.driveLinkInputTexteditlayout.visibility=View.VISIBLE
         }
+//        binding.driveLinkSubmitButton.
         binding.problemDescriptionTv.text=pdesc
         binding.problemStatementTv.text=pname
         binding.deadlineTv.text=deadline

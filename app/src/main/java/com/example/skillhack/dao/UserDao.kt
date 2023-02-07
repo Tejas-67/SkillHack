@@ -47,6 +47,17 @@ class UserDao {
                 Log.e(TAG, "Internet connection problem")
             }
     }
+    fun addUser(user :User)
+    {
+        db.collection("users").document(user.mobileNumber).set(user)
+            .addOnFailureListener {
+                Log.e(TAG, "unable to submit ")
+            }
+            .addOnSuccessListener {
+                Log.d(TAG, "success")
+            }
+    }
+
     fun getUser(phoneNumber:String, callback:(User) -> Unit){
         //val phoneNumber=auth.currentUser!!.phoneNumber!!
         var user: User=User()
