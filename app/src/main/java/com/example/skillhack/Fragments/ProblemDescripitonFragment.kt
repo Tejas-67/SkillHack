@@ -39,14 +39,22 @@ class ProblemDescripitonFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
        _binding=FragmentProblemDescripitonBinding.inflate(inflater, container , false)
+
+        binding.driveLinkInputTexteditlayout.visibility=View.INVISIBLE
+        binding.driveLinkSubmitButton.visibility=View.INVISIBLE
+
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
        // binding.driveLinkSubmitButton.setOnClickListener { Toast.makeText(requireContext(), "Working fine $uid", Toast.LENGTH_SHORT).show() }
+        binding.startSolvingBtn.setOnClickListener{
+            binding.startSolvingBtn.visibility=View.INVISIBLE
+            binding.driveLinkSubmitButton.visibility=View.VISIBLE
+            binding.driveLinkInputTexteditlayout.visibility=View.VISIBLE
+        }
         binding.problemDescriptionTv.text=viewModel.currproblem?.problemdesc
         binding.problemStatementTv.text= viewModel.currproblem?.problemname
         binding.deadlineTv.text=viewModel.currproblem?.deadline
