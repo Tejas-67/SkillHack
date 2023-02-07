@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Fragments.AdminAddProblem">
+<LinearLayout
+    android:orientation="vertical" android:layout_height="wrap_content"
+    android:layout_width="wrap_content">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="15sp"
+        android:textSize="20sp"
+        style="@style/TextAppearance.Material3.BodyLarge"
+        android:text="Hello Admin, Update Challenge for users"/>
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+
+
+        android:layout_height="wrap_content"
+        android:padding="15sp"
+        android:id="@+id/problem_statement_input"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:hint="Problem Statement?">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:inputType="text"
+            android:id="@+id/problem_statement_edit"
+            android:layout_height="wrap_content"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+
+
+        android:layout_height="wrap_content"
+        android:padding="15sp"
+        android:id="@+id/problem_desc_input"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:hint="Detailed Description of Problem?">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/problem_desc_edit"
+            android:inputType="text"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:id="@+id/problem_deadline_input"
+
+        android:layout_height="wrap_content"
+        android:padding="15sp"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:hint="Review Date?">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/problem_deadline_edit"
+            android:inputType="text"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+
+        android:id="@+id/problem_skills_input"
+        android:layout_height="wrap_content"
+        android:padding="15sp"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:hint="Skills Required?">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/problem_skills_edit"
+            android:inputType="text"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:id="@+id/problem_prize_input"
+
+        android:layout_height="wrap_content"
+        android:padding="15sp"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:hint="Reward Amount?">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:id="@+id/problem_prize_edit"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:id="@+id/problem_pid_input"
+        android:layout_height="wrap_content"
+        android:padding="15sp"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:hint="Enter new problem ID">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/problem_pid_edit"
+            android:inputType="text"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/add_problem_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Add Problem"
+        />
+
+</LinearLayout></ScrollView>

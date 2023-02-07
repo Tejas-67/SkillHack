@@ -2,12 +2,11 @@ package com.example.skillhack.Fragments
 
 import android.os.Bundle
 import android.util.Log
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.findNavController
 import com.example.skillhack.Adapters.AdminProblemAdapter
 import com.example.skillhack.Adapters.ProblemAdapter
 import com.example.skillhack.Models.SharedViewModel
@@ -55,12 +54,29 @@ class AdminHomeFragment : Fragment() {
         val dao= ProblemsDao()
         //Log.w("TEJAS", "$p")
 //        binding.problemListRcv.adapter=ProblemAdapter(dao.getProblems())
-
+        binding.addproblemm.setOnClickListener{
+            val action=AdminHomeFragmentDirections.actionAdminHomeFragmentToAdminAddProblem()
+            binding.root.findNavController().navigate(action)
+        }
         dao.getProblems { problems ->
            binding.adminProblemListRcv.adapter= AdminProblemAdapter(problems, viewModel)
             //implement problem submission list for admin through same rcv
         }
     }
+
+//    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+//        super.onCreateOptionsMenu(menu, inflater)
+//        inflater?.inflate(R.menu.admin_menu, menu)
+//    }
+
+//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+//
+//        if(item.itemId==R.id.addproblem){
+//            val action=AdminHomeFragmentDirections.actionAdminHomeFragmentToAdminAddProblem()
+//            binding.root.findNavController().navigate(action)
+//        }
+//        return super.onOptionsItemSelected(item)
+//    }
 
     companion object {
         /**

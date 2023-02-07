@@ -5,6 +5,7 @@ import com.bumptech.glide.load.resource.gif.StreamGifDecoder
 import com.example.skillhack.data.Problem
 import com.example.skillhack.databinding.FragmentLoginPhoneNumberBinding
 import com.google.firebase.firestore.FirebaseFirestore
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
@@ -79,8 +80,25 @@ class ProblemsDao {
         return submissions
     }
 
+    fun addProblem(p: Problem){
+       // p.let{
+            //GlobalScope.launch(Dispatchers.IO){
+                problemList.document(p.pid).set(p)
+                    .addOnSuccessListener {
+                        Log.w("TEJAS", "ADDED")
+                    }
+                    .addOnFailureListener { Log.w("TEJAS", "COUDNT") }
 
-}
+    }
+
+              //  }
+           // }
+        }
+
+
+
+
+
 
 
 

@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.example.skillhack.Fragments.HomeFragment"
-        android:label="HomeFragment" >
+        android:label="HackSkill" >
         <action
             android:id="@+id/action_homeFragment_to_problemDescripitonFragment"
             app:destination="@id/problemDescripitonFragment" />
@@ -19,7 +19,7 @@
     <fragment
         android:id="@+id/problemDescripitonFragment"
         android:name="com.example.skillhack.Fragments.ProblemDescripitonFragment"
-        android:label="ProblemDescripitonFragment" >
+        android:label="HackSkill" >
 
         <argument
             android:name="problemname"
@@ -40,6 +40,6 @@
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.example.skillhack.Fragments.ProfileFragment"
-        android:label="fragment_profile"
+        android:label="HackSkill"
         tools:layout="@layout/fragment_profile" />
 </navigation>

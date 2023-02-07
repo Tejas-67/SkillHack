@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/loginPhoneNumberFragment"
         android:name="com.example.skillhack.Fragments.LoginPhoneNumberFragment"
-        android:label="LoginPhoneNumberFragment" >
+        android:label="HackSkill" >
         <action
             android:id="@+id/action_loginPhoneNumberFragment_to_otpVerificationFragment"
             app:destination="@id/otpVerificationFragment" />
@@ -19,7 +19,7 @@
     <fragment
         android:id="@+id/otpVerificationFragment"
         android:name="com.example.skillhack.Fragments.OtpVerificationFragment"
-        android:label="OtpVerificationFragment" >
+        android:label="HackSkill" >
         <argument
             android:name="otp"
             app:argType="string" />
@@ -45,7 +45,7 @@
     <fragment
         android:id="@+id/profileSetupFragment"
         android:name="com.example.skillhack.Fragments.ProfileSetupFragment"
-        android:label="fragment_profile_setup"
+        android:label="HackSkill"
         tools:layout="@layout/fragment_profile_setup" >
         <action
             android:id="@+id/action_profileSetupFragment_to_profileSetupSkillFragment"
@@ -57,7 +57,7 @@
     <fragment
         android:id="@+id/profileSetupSkillFragment"
         android:name="com.example.skillhack.Fragments.ProfileSetupSkillFragment"
-        android:label="fragment_profile_setup_skill"
+        android:label="HackSkill"
         tools:layout="@layout/fragment_profile_setup_skill" >
         <action
             android:id="@+id/action_profileSetupSkillFragment_to_mainActivity"
@@ -75,10 +75,10 @@
     <activity
         android:id="@+id/mainActivity"
         android:name="com.example.skillhack.Activities.MainActivity"
-        android:label="activity_main"
+        android:label="HackSkill"
         tools:layout="@layout/activity_main" />
     <activity
         android:id="@+id/adminActivity"
         android:name="com.example.skillhack.Activities.AdminActivity"
-        android:label="AdminActivity" />
+        android:label="HackSkill" />
 </navigation>

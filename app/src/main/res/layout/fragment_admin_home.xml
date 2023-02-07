@@ -23,6 +23,13 @@
                 android:textSize="40dp"
                 android:layout_weight="1"
                 />
+            <ImageView
+                android:layout_width="90dp"
+                android:id="@+id/addproblemm"
+                android:layout_height="90dp"
+                android:padding="20dp"
+                android:layout_gravity="right"
+                android:src="@drawable/ic_add_problem"/>
         </LinearLayout>
 
         <TextView

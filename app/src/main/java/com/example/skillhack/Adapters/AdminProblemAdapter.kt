@@ -40,7 +40,7 @@ class AdminProblemAdapter(val list: List<Problem>, val viewModel: SharedViewMode
         //Log.w
         holder.viewMoreBtn.setOnClickListener {
 
-            val action=AdminHomeFragmentDirections.actionAdminHomeFragmentToAdminSubmissionsFragment(p.pid)
+            val action=AdminHomeFragmentDirections.actionAdminHomeFragmentToAdminSubmissionsFragment(p.pid!!)
             viewModel.updateCurrProblem(p)
             holder.view.findNavController().navigate(action)
         }
