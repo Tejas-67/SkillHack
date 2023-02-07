@@ -16,5 +16,7 @@
     <color name="background">#F84A4A</color>
     <color name="blue">#0F4FE5</color>
     <color name="halfwhite">#f0ffff</color>
+    <color name="red">#FF0000</color>
+    <color name="yellow">#FFFF00</color>
 
 </resources>

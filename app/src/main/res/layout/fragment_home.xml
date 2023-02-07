@@ -8,9 +8,6 @@
         tools:context=".HomeFragment"
         android:background="@color/black"
         android:orientation="vertical">
-
-
-
         <TextView
             android:id="@+id/problem_desc_tv"
             android:layout_margin="5dp"
@@ -19,17 +16,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Pick a problem and stand chance to win cash rewards"
-            android:paddingLeft="20dp"/>
+            android:layout_marginLeft="20dp"/>
 
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/problem_list_rcv"
             android:layout_gravity="center"
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-
-            android:layout_height="match_parent"/>
-
-
+            />
     </LinearLayout>
 </layout>

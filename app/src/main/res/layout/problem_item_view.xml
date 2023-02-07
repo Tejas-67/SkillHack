@@ -29,15 +29,16 @@
             android:text="PROBLEM STATEMENT"
             android:fontFamily="sans-serif-smallcaps"
             style="@style/TextAppearance.Material3.BodyLarge"
-            android:textSize="28dp"
+            android:textSize="28sp"
             android:padding="20dp"
             />
         <TextView
             android:id="@+id/cardview_problem_desc"
+            android:textAlignment="textStart"
             android:textColor="@color/halfwhite"
             android:layout_width="wrap_content"
+            android:layout_marginLeft="10dp"
             android:layout_height="wrap_content"
-            android:paddingLeft="20dp"
             android:paddingTop="10dp"
             android:textSize="18sp"
             android:text="This view here would be containing the description of the problem statement."/>
@@ -88,8 +89,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
+                    android:layout_marginLeft="10dp"
                     android:text="23-02-2023"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/red" />
 
 
                 <TextView
@@ -100,7 +102,7 @@
                     android:layout_marginLeft="100dp"
                     android:clickable="true"
                     android:text="View More"
-                    android:textColor="@color/halfwhite">
+                    android:textColor="@color/blue">
 
                 </TextView>
             </LinearLayout>
