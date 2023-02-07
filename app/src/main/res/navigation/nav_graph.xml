@@ -21,6 +21,18 @@
         android:name="com.example.skillhack.Fragments.ProblemDescripitonFragment"
         android:label="ProblemDescripitonFragment" >
 
+        <argument
+            android:name="problemname"
+            app:argType="string" />
+        <argument
+            android:name="problemdesc"
+            app:argType="string" />
+        <argument
+            android:name="deadline"
+            app:argType="string" />
+        <argument
+            android:name="prize"
+            app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/profileFragment"

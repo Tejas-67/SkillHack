@@ -15,6 +15,7 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
+import com.example.skillhack.Activities.AdminActivity
 import com.example.skillhack.Activities.MainActivity
 import com.example.skillhack.databinding.FragmentOtpVerificationBinding
 import com.example.skillhack.R
@@ -32,8 +33,7 @@ import kotlinx.coroutines.launch
 
 
 import java.util.concurrent.TimeUnit
-// SHA256 12:C3:AB:66:14:47:CA:60:03:E3:37:F9:30:87:EF:D8:2F:9D:D9:31:43:C9:D0:1E:D6:1F:FE:1B:80:78:5F:A0
-// 17:4A:16:CC:D9:2C:10:BE:67:73:24:8C:48:78:84:A7:C7:29:85:CE
+
 class OtpVerificationFragment : Fragment() {
     val TAG = "Login OTP Tag"
     private var _binding : FragmentOtpVerificationBinding? = null
@@ -177,24 +177,27 @@ class OtpVerificationFragment : Fragment() {
                 if (task.isSuccessful) {
                     // Sign in success, update UI with the signed-in user's information
                     Log.d(TAG, "signInWithCredential:success1")
+                    Log.d(TAG, "uid -> ${auth.currentUser!!.uid} phone number -> ${auth.currentUser!!.phoneNumber}")
                     Toast.makeText(activity, "Authenticated Successfully! ", Toast.LENGTH_LONG).show()
+
                     if(auth.currentUser!!.phoneNumber == "+918460379804")
                         sendToAdminActivity()
-
-                    GlobalScope.launch(Dispatchers.Main) {
-                        val userDao = UserDao()
-                        if(userDao.checkNumberAlreadyExists(auth.currentUser!!.phoneNumber!!))
-                        {
-                            Log.e(TAG, "Account already created.....")
-                            sendToMain()
-                        }
-                        else
-                        {
-                            progressBar.visibility = View.INVISIBLE
-                            Log.e(TAG, "...............ck1................")
-                            val action = OtpVerificationFragmentDirections.actionOtpVerificationFragmentToProfileSetupFragment(phonenumber = phoneNumber)
-                            binding.root.findNavController().navigate(action)
-                            Log.e(TAG, "...............ck2................")
+                    else {
+                        GlobalScope.launch {
+                            val userDao = UserDao()
+                            if (userDao.checkNumberAlreadyExists(auth.currentUser!!.phoneNumber!!)) {
+                                Log.e(TAG, "Account already created.....")
+                                sendToMain()
+                            } else {
+                                progressBar.visibility = View.INVISIBLE
+                                Log.e(TAG, "...............ck1................")
+                                val action =
+                                    OtpVerificationFragmentDirections.actionOtpVerificationFragmentToProfileSetupFragment(
+                                        phonenumber = phoneNumber
+                                    )
+                                binding.root.findNavController().navigate(action)
+                                Log.e(TAG, "...............ck2................")
+                            }
                         }
                     }
 
@@ -211,11 +214,15 @@ class OtpVerificationFragment : Fragment() {
     }
 
     private fun sendToAdminActivity() {
-//        startActivity(Intent(this.requireContext(), AdminActivity::class.java))
-//        requireActivity().finish()
+        Log.w("TEJAS", "AAGAYA admin TAK")
+        startActivity(Intent(this.requireContext(), AdminActivity::class.java))
+        requireActivity().finish()
     }
 
     private fun sendToMain() {
+
+        Log.w("TEJAS", "AAGAYA main TAK")
+
         startActivity(Intent(this.requireContext(), MainActivity::class.java))
         requireActivity().finish()
     }

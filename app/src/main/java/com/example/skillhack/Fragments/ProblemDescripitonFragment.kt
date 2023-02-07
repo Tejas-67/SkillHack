@@ -23,15 +23,22 @@ private const val ARG_PARAM2 = "param2"
 class ProblemDescripitonFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private lateinit var p: Problem
-    private var param2: String? = null
+    private var pname: String? = null
+    private var pdesc: String? = null
+    private var deadline: String? = null
+    private var prize: Int? = null
 
-    private val viewModel: SharedViewModel by activityViewModels()
+  //  private val viewModel: SharedViewModel by activityViewModels()
     private var _binding: FragmentProblemDescripitonBinding?=null
     private val binding get()=_binding!!
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            param2 = it.getString(ARG_PARAM2)
+           pname=it.getString("problemname")
+            pdesc=it.getString("problemdesc")
+            deadline=it.getString("deadline")
+            prize=it.getInt("prize")
         }
     }
 
@@ -39,6 +46,7 @@ class ProblemDescripitonFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
        _binding=FragmentProblemDescripitonBinding.inflate(inflater, container , false)
 
         binding.driveLinkInputTexteditlayout.visibility=View.INVISIBLE
@@ -49,23 +57,27 @@ class ProblemDescripitonFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.driveLinkSubmitButton.visibility=View.GONE
+        binding.driveLinkInputTexteditlayout.visibility=View.GONE
+        binding.startSolvingBtn.setOnClickListener {
+            binding.startSolvingBtn.visibility=View.GONE
+            binding.driveLinkSubmitButton.visibility=View.VISIBLE
+            binding.driveLinkInputTexteditlayout.visibility=View.VISIBLE
+        }
        // binding.driveLinkSubmitButton.setOnClickListener { Toast.makeText(requireContext(), "Working fine $uid", Toast.LENGTH_SHORT).show() }
         binding.startSolvingBtn.setOnClickListener{
             binding.startSolvingBtn.visibility=View.INVISIBLE
             binding.driveLinkSubmitButton.visibility=View.VISIBLE
             binding.driveLinkInputTexteditlayout.visibility=View.VISIBLE
         }
-        binding.problemDescriptionTv.text=viewModel.currproblem?.problemdesc
-        binding.problemStatementTv.text= viewModel.currproblem?.problemname
-        binding.deadlineTv.text=viewModel.currproblem?.deadline
-        binding.cashPrizeTv.text=viewModel.currproblem?.prize.toString()
+        binding.problemDescriptionTv.text=pdesc
+        binding.problemStatementTv.text=pname
+        binding.deadlineTv.text=deadline
+        binding.cashPrizeTv.text=prize.toString()
 
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        viewModel.nullCurrProb()
-    }
+
 
     companion object {
 

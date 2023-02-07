@@ -32,7 +32,5 @@ class SkillAdapter(val list: List<String>, val pd: ProblemsDao): RecyclerView.Ad
             if(holder.skillcheckbox.isChecked) pd.addSkill(holder.skillName.text.toString(),true)
             else pd.addSkill(holder.skillName.text.toString(), false)
         }
-
-
     }
 }

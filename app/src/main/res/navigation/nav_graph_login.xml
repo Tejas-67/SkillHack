@@ -38,6 +38,9 @@
         <argument
             android:name="phoneNumber"
             app:argType="string" />
+        <action
+            android:id="@+id/action_otpVerificationFragment_to_adminActivity"
+            app:destination="@id/adminActivity" />
     </fragment>
     <fragment
         android:id="@+id/profileSetupFragment"
@@ -74,4 +77,8 @@
         android:name="com.example.skillhack.Activities.MainActivity"
         android:label="activity_main"
         tools:layout="@layout/activity_main" />
+    <activity
+        android:id="@+id/adminActivity"
+        android:name="com.example.skillhack.Activities.AdminActivity"
+        android:label="AdminActivity" />
 </navigation>

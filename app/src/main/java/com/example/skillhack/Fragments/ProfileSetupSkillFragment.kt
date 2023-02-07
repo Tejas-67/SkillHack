@@ -91,6 +91,7 @@ class ProfileSetupSkillFragment : Fragment() {
             }
 
 
+
         }
 
 
@@ -98,12 +99,13 @@ class ProfileSetupSkillFragment : Fragment() {
     private fun sendToMain() {
 
         startActivity(Intent(this.requireContext(), MainActivity::class.java))
-        activity?.finish()
+
+        //activity?.finish()
     }
     override fun onDestroy() {
         super.onDestroy()
 //        if(!isSuccessfulSetup) auth.signOut()
-        activity?.finish()
+       // activity?.finish()
     }
 }
 //var problemCount :Int=0,

@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.Navigation.findNavController
 import androidx.navigation.findNavController
+import com.example.skillhack.Activities.AdminActivity
 import com.example.skillhack.Activities.MainActivity
 import com.example.skillhack.dao.UserDao
 import com.example.skillhack.databinding.FragmentLoginPhoneNumberBinding
@@ -40,7 +41,7 @@ class LoginPhoneNumberFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
+
         _binding = FragmentLoginPhoneNumberBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -120,9 +121,7 @@ class LoginPhoneNumberFragment : Fragment() {
 
                     val action =
                         LoginPhoneNumberFragmentDirections.actionLoginPhoneNumberFragmentToOtpVerificationFragment(
-                            resendToken = token, otp =
-                            verificationId,
-                            phoneNumber = phoneNumber
+                            otp=verificationId, token, phoneNumber=phoneNumber
                         )
                     binding.getOtpProgressBar.visibility = View.INVISIBLE
                     binding.root.findNavController().navigate(action)
@@ -141,7 +140,7 @@ class LoginPhoneNumberFragment : Fragment() {
 
 
                     Toast.makeText(requireContext(), "Authenticated Successfully! ", Toast.LENGTH_LONG).show()
-                    updateUI(auth.currentUser)
+                    updateUI()
                 } else {
                     // Sign in failed, display a message and update the UI
                     Log.e(TAG, "signInWithPhoneAuthCredential:failure :${task.exception.toString()}")
@@ -154,41 +153,39 @@ class LoginPhoneNumberFragment : Fragment() {
     }
 
 
-    private fun updateUI(firebaseUser: FirebaseUser?) {
-        if(auth.currentUser!!.phoneNumber == "+918460379855")
+    private fun updateUI() {
+        if(auth.currentUser!!.phoneNumber == "+918460379804")
             sendToAdminActivity()
-
-        GlobalScope.launch(Dispatchers.Main) {
-            val userDao = UserDao()
-            if(userDao.checkNumberAlreadyExists(auth.currentUser!!.phoneNumber!!))
-            {
-                Log.e(TAG, "Account already created.....")
-                sendToMain()
-            }
-            else
-            {
-                Log.e(TAG, "...............ck1................")
-                val action = LoginPhoneNumberFragmentDirections.actionLoginPhoneNumberFragmentToProfileSetupFragment(phoneNumber)
-                binding.root.findNavController().navigate(action)
-                Log.e(TAG, "...............ck2................")
+        else {
+            GlobalScope.launch(Dispatchers.Main) {
+                val userDao = UserDao()
+                if (userDao.checkNumberAlreadyExists(auth.currentUser!!.phoneNumber!!)) {
+                    Log.e(TAG, "Account already created.....")
+                    sendToMain()
+                } else {
+                    val action =
+                        LoginPhoneNumberFragmentDirections.actionLoginPhoneNumberFragmentToProfileSetupFragment(phoneNumber)
+                    binding.root.findNavController().navigate(action)
+                }
             }
         }
-
     }
     private fun sendToMain() {
         startActivity(Intent(this.requireContext(), MainActivity::class.java))
         activity?.finish()
     }
     private fun sendToAdminActivity() {
-//        startActivity(Intent(this.requireContext(), AdminActivity::class.java))
-//        requireActivity().finish()
+        startActivity(Intent(this.requireContext(), AdminActivity::class.java))
+        requireActivity().finish()
     }
     override fun onStart() {
         // Check if user is signed in (non-null) and update UI accordingly.
         val currentUser = auth.currentUser
         if(currentUser != null){
-//            Toast.makeText(this.requireContext(),"Already Signed in.. Redirecting..${currentUser.phoneNumber}", Toast.LENGTH_SHORT).show()
-            sendToMain()
+            if(auth.currentUser!!.phoneNumber == "+918460379804")
+                sendToAdminActivity()
+            else
+                sendToMain()
         }
         super.onStart()
     }
