@@ -3,6 +3,8 @@ package com.example.skillhack.dao
 import android.util.Log
 import com.example.skillhack.data.Problem
 import com.google.firebase.firestore.FirebaseFirestore
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 
 class ProblemsDao {
@@ -31,20 +33,25 @@ class ProblemsDao {
     fun addSkill(skill: String, state: Boolean){
         map.put(skill, state)
     }
-//    suspend fun getAllSkills()
-//    {
-//        val skills :Array.
-//    }
-    suspend fun getSkills(callback:(List<String>)->Unit):List<String>{
-        val Skills : List<String> = mutableListOf()
-        dataBase.collection("allSkills").get()
-            .addOnSuccessListener { skills->
-                for(skill in skills){
-                    Skills.plus(skill.id)
-                }
-                callback(Skills)
-            }.await()
 
+    fun getSkills(callback:(List<String>)->Unit): List<String> {
+
+
+            var Skills : MutableList<String> = mutableListOf()
+            dataBase.collection("allSkills").get()
+                .addOnSuccessListener { skills->
+                    for(skill in skills){
+                        Skills.add(skill.id)
+                        Log.e("TAG", "skill.id =-->${skill.id}")
+                    }
+                    callback(Skills)
+                }
+                .addOnFailureListener {
+                    Log.e("TAG", "failed to retrieve all skills from database")
+                }
+
+
+            Log.e("TAG","..............skills --->>$Skills")
 
         return Skills
     }

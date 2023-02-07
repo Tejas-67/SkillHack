@@ -1,5 +1,6 @@
 package com.example.skillhack.Fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -7,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.bumptech.glide.Glide
+import com.example.skillhack.LoginActivity
 import com.example.skillhack.R
 import com.example.skillhack.dao.UserDao
 import com.example.skillhack.databinding.FragmentProfileBinding
@@ -52,6 +54,8 @@ class ProfileFragment : Fragment() {
         binding.profilesectionSV.visibility=View.GONE
         auth=FirebaseAuth.getInstance()
         val userDao= UserDao()
+
+        if(auth.currentUser == null) Log.e("ProfileFragment", ".......auth.currentUser is null")
         userDao.getUser(auth.currentUser!!.phoneNumber!!){ user->
             binding.profilepageprogressbar.visibility=View.GONE
             binding.profilesectionSV.visibility=View.VISIBLE
@@ -65,16 +69,10 @@ class ProfileFragment : Fragment() {
         }
         binding.logOutTv.setOnClickListener{
             auth.signOut()
+            startActivity(Intent(this.requireContext(),LoginActivity::class.java))
             activity?.finish()
         }
-//        userDao.getUser { user->
-//            Log.w("TEJAS", "Updating User ${user.name}")
-//
-////            binding.userNameTv.text=user.name.toString()
-////            binding.phoneNumberTv.text=user.mobileNumber.toString()
-////            binding.profilePageRewardsearnedtv.text=user.rewardsEarned.toString()
-////            binding.profilePageProblemsolvedtv.text=user.problemCount.toString()
-//        }
+
     }
 
     companion object {

@@ -77,7 +77,7 @@ class ProfileSetupFragment : Fragment() {
 
     override fun onDestroy() {
         super.onDestroy()
-        auth.signOut()
+//        auth.signOut()
         activity?.finish()
     }
 

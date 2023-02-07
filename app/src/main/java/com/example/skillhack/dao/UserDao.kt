@@ -30,7 +30,7 @@ class UserDao {
         return flag
 
     }
-    fun addUserSkills(phoneNumber: String, name: String, dob: String, skills:MutableList<String>, context: Context)
+    fun addUserSkills(phoneNumber: String, name: String, dob: String, skills:MutableList<String>)
     {
         val user = User()
         user.name = name
