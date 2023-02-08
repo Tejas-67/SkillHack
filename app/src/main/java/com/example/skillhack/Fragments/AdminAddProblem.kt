@@ -49,7 +49,7 @@ class AdminAddProblem : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         var deadline:String=""
-        var prize=""
+        var prize=0
         var desc=""
         var name=""
         var id=""
@@ -65,7 +65,7 @@ class AdminAddProblem : Fragment() {
             else name= binding.problemStatementEdit.text.toString()
 
             if(binding.problemPrizeEdit.text==null) binding.problemPrizeInput.error="Enter deadline"
-            else deadline= binding.problemPrizeEdit.text.toString()
+            else prize= binding.problemPrizeEdit.text.toString().toInt()
 
             if(binding.problemPidEdit.text==null) binding.problemPidInput.error="Enter deadline"
             else id= binding.problemPidEdit.text.toString()
@@ -73,7 +73,7 @@ class AdminAddProblem : Fragment() {
 
 
             val newproblem=Problem()
-            newproblem.prize=prize.toInt()
+            newproblem.prize=prize
             newproblem.deadline=deadline
             newproblem.problemdesc=desc
             newproblem.problemname=name

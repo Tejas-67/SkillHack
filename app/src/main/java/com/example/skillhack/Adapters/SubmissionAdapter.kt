@@ -22,7 +22,7 @@ class SubmissionAdapter(val list: List<String>):RecyclerView.Adapter<SubmissionA
         holder.tv.text=list[pos]
 
         holder.tv.setOnClickListener {
-            val q: Uri= Uri.parse(list[pos])
+            val q: Uri= Uri.parse("https://${list[pos]}")
             val intent=Intent(Intent.ACTION_VIEW, q)
             holder.view.context.startActivity(intent)
         }

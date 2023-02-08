@@ -6,6 +6,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".HomeFragment"
+        android:background="@color/black"
         android:orientation="vertical">
 
         <LinearLayout
@@ -13,40 +14,33 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/admin_problem_name_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Skillhack"
-                android:paddingTop="20dp"
-                android:paddingLeft="20dp"
-                android:textSize="40dp"
-                android:layout_weight="1"
-                />
+
             <ImageView
                 android:layout_width="90dp"
                 android:id="@+id/addproblemm"
+                android:textColor="@color/halfwhite"
+                app:tint="@color/white"
                 android:layout_height="90dp"
                 android:padding="20dp"
-                android:layout_gravity="right"
+                android:gravity="right"
                 android:src="@drawable/ic_add_problem"/>
         </LinearLayout>
+
 
         <TextView
             android:id="@+id/admin_problem_desc_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Pick a problem and stand chance to win cash rewards"
-            android:paddingLeft="20dp"/>
-
+            android:paddingLeft="20dp"
+            android:text="Click on a problem to see submissions"
+            android:textColor="@color/halfwhite" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/admin_problem_list_rcv"
+            android:layout_gravity="center"
             android:layout_width="match_parent"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            android:paddingTop="24dp"
-            android:paddingLeft="20dp"
-            android:layout_height="500dp"/>
+            android:layout_height="wrap_content"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
 
 
     </LinearLayout>

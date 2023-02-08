@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout android:layout_width="wrap_content"
+<androidx.constraintlayout.widget.ConstraintLayout android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-
+    android:background="@color/black"
     tools:context=".Fragments.ProfileFragment">
     <ProgressBar
         android:id="@+id/profilepageprogressbar"
@@ -48,6 +48,7 @@
         <TextView
             android:id="@+id/user_name_tv"
             android:layout_width="wrap_content"
+            android:textColor="@color/halfwhite"
             android:layout_height="wrap_content"
             android:text="Your Name Here"
             android:textSize="15dp"
@@ -55,92 +56,53 @@
             />
         <TextView
             android:id="@+id/phone_number_tv"
+            android:textColor="@color/halfwhite"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Phone Number Here"
             android:textSize="15dp"
             android:layout_gravity="center"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Skills"
-            android:textSize="30dp"
-            android:paddingTop="24dp"
-            android:paddingLeft="24dp"/>
+
+
+
 
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <Button
-                android:id="@+id/skill1_btn"
-                android:layout_margin="10dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Firebase"/>
-            <Button
-                android:id="@+id/skill2_btn"
-                android:layout_margin="10dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="c++"/>
-            <Button
-                android:layout_margin="10dp"
-                android:id="@+id/skill3_btn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Java"/>
-
-
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <Button
-                android:layout_margin="10dp"
-                android:id="@+id/skill4_btn"
-
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="python"/>
-            <Button
-                android:id="@+id/skill5_btn"
-                android:layout_margin="10dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="git and github"/>
-            <Button
-                android:layout_margin="10dp"
-                android:id="@+id/skill6_btn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="kotlin"/>
-        </LinearLayout>
-        <LinearLayout
+            android:layout_marginTop="50sp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
-            <androidx.cardview.widget.CardView
+            <com.google.android.material.card.MaterialCardView
                 android:layout_width="0dp"
+                app:strokeWidth="5dp"
+                android:elevation="2dp"
+                app:cardCornerRadius="10dp"
+                app:strokeColor="@color/purple_700"
+                android:outlineAmbientShadowColor="@color/purple_700"
+                android:outlineSpotShadowColor="@color/purple_700"
                 android:layout_height="100dp"
                 android:layout_weight="1"
-                android:padding="20dp">
+                android:background="@color/black"
+                android:padding="20dp"
+                android:layout_margin="3dp">
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:background="@color/black"
                     android:orientation="vertical">
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Problems Solved"
+                        android:textColor="@color/halfwhite"
                         android:paddingTop="10dp"
                         android:layout_gravity="center"
                         android:textSize="20dp"
                         />
                     <TextView
                         android:layout_width="wrap_content"
+                        android:textColor="@color/halfwhite"
                         android:layout_height="wrap_content"
                         android:id="@+id/profile_page_problemsolvedtv"
                         android:text="0"
@@ -150,13 +112,16 @@
                 </LinearLayout>
 
 
-            </androidx.cardview.widget.CardView>
+            </com.google.android.material.card.MaterialCardView>
 
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="0dp"
                 android:layout_height="100dp"
                 android:layout_weight="1"
-                app:cardCornerRadius="5dp"
+                app:cardCornerRadius="10dp"
+                app:strokeWidth="5dp"
+                android:layout_margin="3dp"
+                app:strokeColor="@color/purple_700"
                 android:outlineAmbientShadowColor="@color/purple_700"
                 android:outlineSpotShadowColor="@color/purple_700"
 
@@ -164,20 +129,24 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:background="@color/black"
                     android:orientation="vertical">
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Rewards Earned"
-                        android:paddingTop="10dp"
+                        android:paddingTop="15dp"
                         android:layout_gravity="center"
+                        android:textColor="@color/halfwhite"
                         android:textSize="20dp"
                         />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textColor="@color/halfwhite"
                         android:id="@+id/profile_page_rewardsearnedtv"
                         android:text="0"
+                        android:paddingTop="10dp"
                         android:layout_gravity="center"
                         android:textSize="20dp"
                         />
@@ -187,6 +156,7 @@
             </com.google.android.material.card.MaterialCardView>
         </LinearLayout>
         <TextView
+            android:layout_marginTop="30sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/contact_us_tv"
