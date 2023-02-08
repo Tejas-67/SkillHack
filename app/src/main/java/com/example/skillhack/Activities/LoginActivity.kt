@@ -21,7 +21,6 @@ import com.google.firebase.ktx.Firebase
 class LoginActivity : AppCompatActivity() {
     private lateinit var navController: NavController
     private lateinit var binding: ActivityLoginBinding
-    private lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

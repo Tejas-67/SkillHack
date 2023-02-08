@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.Navigation.findNavController
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.example.skillhack.Activities.AdminActivity
 import com.example.skillhack.Activities.MainActivity
 import com.example.skillhack.dao.UserDao
@@ -92,7 +93,7 @@ class LoginPhoneNumberFragment : Fragment() {
             //     user action.
             Log.e(TAG, "onVerificationCompleted:$credential")
             binding.getOtpProgressBar.visibility= View.INVISIBLE
-            signInWithPhoneAuthCredential(credential)
+//            signInWithPhoneAuthCredential(credential)
         }
 
         override fun onVerificationFailed(e: FirebaseException) {
@@ -115,8 +116,8 @@ class LoginPhoneNumberFragment : Fragment() {
             token: PhoneAuthProvider.ForceResendingToken
         ) {
 
-            GlobalScope.launch {
-                withContext(Dispatchers.Main) {
+//            GlobalScope.launch {
+//                withContext(Dispatchers.IO) {
                     Log.e(TAG, "onCodeSent :$verificationId")
 
                     val action =
@@ -125,8 +126,8 @@ class LoginPhoneNumberFragment : Fragment() {
                         )
                     binding.getOtpProgressBar.visibility = View.INVISIBLE
                     binding.root.findNavController().navigate(action)
-                }
-            }
+//                }
+//            }
         }
     }
 
@@ -158,14 +159,18 @@ class LoginPhoneNumberFragment : Fragment() {
             sendToAdminActivity()
         else {
             GlobalScope.launch(Dispatchers.Main) {
+                Log.e(TAG, "...............ck1.............")
                 val userDao = UserDao()
                 if (userDao.checkNumberAlreadyExists(auth.currentUser!!.phoneNumber!!)) {
                     Log.e(TAG, "Account already created.....")
                     sendToMain()
                 } else {
+                    Log.e(TAG, "Account not created.....")
                     val action =
                         LoginPhoneNumberFragmentDirections.actionLoginPhoneNumberFragmentToProfileSetupFragment(phoneNumber)
-                    binding.root.findNavController().navigate(action)
+                    findNavController().navigate(action)
+
+                    Log.e(TAG, "...............ck3.............")
                 }
             }
         }
