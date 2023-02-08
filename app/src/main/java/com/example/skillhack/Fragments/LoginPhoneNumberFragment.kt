@@ -154,7 +154,7 @@ class LoginPhoneNumberFragment : Fragment() {
 
 
     private fun updateUI() {
-        if(auth.currentUser!!.phoneNumber == "+918460379804")
+        if(auth.currentUser!!.phoneNumber == "+919876543210")
             sendToAdminActivity()
         else {
             GlobalScope.launch(Dispatchers.Main) {
@@ -182,7 +182,7 @@ class LoginPhoneNumberFragment : Fragment() {
         // Check if user is signed in (non-null) and update UI accordingly.
         val currentUser = auth.currentUser
         if(currentUser != null){
-            if(auth.currentUser!!.phoneNumber == "+918460379804")
+            if(auth.currentUser!!.phoneNumber == "+919876543210")
                 sendToAdminActivity()
             else
                 sendToMain()

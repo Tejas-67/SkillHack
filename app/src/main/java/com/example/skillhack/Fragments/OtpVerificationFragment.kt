@@ -180,7 +180,7 @@ class OtpVerificationFragment : Fragment() {
                     Log.d(TAG, "uid -> ${auth.currentUser!!.uid} phone number -> ${auth.currentUser!!.phoneNumber}")
                     Toast.makeText(activity, "Authenticated Successfully! ", Toast.LENGTH_LONG).show()
 
-                    if(auth.currentUser!!.phoneNumber == "+918460379804")
+                    if(auth.currentUser!!.phoneNumber == "+919876543210")
                         sendToAdminActivity()
                     else {
                         GlobalScope.launch(Dispatchers.Main) {
@@ -206,6 +206,8 @@ class OtpVerificationFragment : Fragment() {
                 } else {
                     // Sign in failed, display a message and update the UI
                     Log.w(TAG, "signInWithPhoneAuthCredential:failure :${task.exception.toString()}")
+                    progressBar.visibility = View.INVISIBLE
+                    Toast.makeText(requireContext(), "Enter correct otp or check your internet connection", Toast.LENGTH_LONG).show()
                     if (task.exception is FirebaseAuthInvalidCredentialsException) {
                         // The verification code entered was invalid
                     }

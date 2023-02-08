@@ -65,7 +65,7 @@ class ProfileFragment : Fragment() {
             binding.profilePageRewardsearnedtv.text=user.rewardsEarned.toString()
             binding.profilePageProblemsolvedtv.text=user.problemCount.toString()
 
-            Glide.with(requireContext()).load(user.image).into(binding.userImageview)
+            //Glide.with(requireContext()).load(user.image).into(binding.userImageview)
         }
         binding.logOutTv.setOnClickListener{
             auth.signOut()
