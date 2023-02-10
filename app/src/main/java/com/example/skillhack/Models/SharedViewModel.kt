@@ -22,7 +22,7 @@ class SharedViewModel: ViewModel() {
     public val listOfSolved: MutableList<String> get()=_listOfSolved
 
     private var _currProblem=MutableLiveData<Problem>()
-    public val currproblem get()=_currProblem.value
+    val currproblem get()=_currProblem.value
 
     public fun updateCurrProblem(p: Problem){
         _currProblem.value=p

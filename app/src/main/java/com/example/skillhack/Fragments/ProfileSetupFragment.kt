@@ -68,7 +68,7 @@ class ProfileSetupFragment : Fragment() {
         binding.submitButton.setOnClickListener{
             val dob=(datePicker.dayOfMonth.toString()+"-"+datePicker.month.toString()+"-"+datePicker.year.toString())
             val name=binding.userNameEditText.text.toString()
-            val user = User(0,"",name, arrayListOf(mapOf()), 0, arrayListOf(),auth.currentUser!!.phoneNumber!!,dob)
+            val user = User(0,"",name, arrayListOf(), 0, arrayListOf(),auth.currentUser!!.phoneNumber!!,dob)
             val action =ProfileSetupFragmentDirections.actionProfileSetupFragmentToProfileSetupSkillFragment(name=name, phonenumber=phoneNumber, dateofbirth = dob)
             binding.root.findNavController().navigate(action)
 

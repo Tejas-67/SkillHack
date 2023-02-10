@@ -24,6 +24,23 @@
                 android:padding="20dp"
                 android:gravity="right"
                 android:src="@drawable/ic_add_problem"/>
+            <TextView
+                android:id="@+id/log_out_button"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:textColor="@color/white"
+                app:tint="@color/white"
+                android:text="LOGOUT"
+                android:padding="20dp"
+                style="@style/TextAppearance.AppCompat.Title"
+                android:textSize="20sp"
+                android:gravity="center_vertical"
+
+
+
+                android:layout_marginLeft="70dp"
+                />
+
         </LinearLayout>
 
 

@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.skillhack.R
 import kotlinx.coroutines.NonDisposableHandle.parent
 
-class SubmissionAdapter(val list: List<String>):RecyclerView.Adapter<SubmissionAdapter.SubmissionViewHolder>() {
+class SubmissionAdapter(private val list: ArrayList<String>, private val mpp: Map<String,String>):RecyclerView.Adapter<SubmissionAdapter.SubmissionViewHolder>() {
     override fun getItemCount(): Int {
         return list.size
     }
@@ -21,8 +21,9 @@ class SubmissionAdapter(val list: List<String>):RecyclerView.Adapter<SubmissionA
     override fun onBindViewHolder(holder: SubmissionViewHolder, pos: Int) {
         holder.tv.text=list[pos]
 
+
         holder.tv.setOnClickListener {
-            val q: Uri= Uri.parse("https://${list[pos]}")
+            val q: Uri= Uri.parse(mpp[list[pos]])
             val intent=Intent(Intent.ACTION_VIEW, q)
             holder.view.context.startActivity(intent)
         }

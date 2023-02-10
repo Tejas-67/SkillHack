@@ -1,5 +1,6 @@
 package com.example.skillhack.Fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.*
@@ -9,11 +10,14 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import com.example.skillhack.Adapters.AdminProblemAdapter
 import com.example.skillhack.Adapters.ProblemAdapter
+import com.example.skillhack.LoginActivity
 import com.example.skillhack.Models.SharedViewModel
 import com.example.skillhack.R
 import com.example.skillhack.dao.ProblemsDao
 import com.example.skillhack.databinding.FragmentAdminHomeBinding
 import com.example.skillhack.databinding.FragmentHomeBinding
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -52,7 +56,7 @@ class AdminHomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val dao= ProblemsDao()
-        //Log.w("TEJAS", "$p")
+        Log.e("adminHomeFragment", "created successfully")
 //        binding.problemListRcv.adapter=ProblemAdapter(dao.getProblems())
         binding.addproblemm.setOnClickListener{
             val action=AdminHomeFragmentDirections.actionAdminHomeFragmentToAdminAddProblem()
@@ -61,6 +65,11 @@ class AdminHomeFragment : Fragment() {
         dao.getProblems { problems ->
            binding.adminProblemListRcv.adapter= AdminProblemAdapter(problems, viewModel)
             //implement problem submission list for admin through same rcv
+        }
+        binding.logOutButton.setOnClickListener{
+            Firebase.auth.signOut()
+            startActivity(Intent(this.requireContext(), LoginActivity::class.java))
+            activity?.finish()
         }
     }
 

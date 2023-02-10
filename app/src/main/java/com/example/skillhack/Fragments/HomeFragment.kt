@@ -54,9 +54,7 @@ class HomeFragment : Fragment() {
 //        binding.problemListRcv.adapter=ProblemAdapter(dao.getProblems())
 
         dao.getProblems { problems ->
-            //Log.w("Tejas", "Agaya")
             binding.problemListRcv.adapter = ProblemAdapter(problems)
-            Toast.makeText(requireContext(), "Halwa", Toast.LENGTH_SHORT).show()
         }
 
 

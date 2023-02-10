@@ -89,7 +89,7 @@ Signing Off."
             android:layout_height="wrap_content">
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_marginTop="10dp"
-                android:hint="To Write Your Answer Press Start Solving"
+                android:hint="Enter valid Google drive or github link for solution"
                 android:id="@+id/drive_link_input_texteditlayout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"

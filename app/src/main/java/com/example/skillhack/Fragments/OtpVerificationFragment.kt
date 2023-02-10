@@ -74,11 +74,6 @@ class OtpVerificationFragment : Fragment() {
 
         init()
         auth = Firebase.auth
-//        if(auth.currentUser ==null) Log.e(TAG, "auth.currentUser null he")
-//        else if(auth.currentUser!!.phoneNumber ==null)
-//            Log.e(TAG, "auth.currentUser.phoneNumber null he")
-//        else
-//            Log.e(TAG, "sab shi he")
         inputOTP1.requestFocus()
         progressBar.visibility = View.INVISIBLE
         addTextChangeListener()

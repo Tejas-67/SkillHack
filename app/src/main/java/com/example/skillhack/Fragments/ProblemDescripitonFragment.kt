@@ -9,12 +9,14 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import com.example.skillhack.Models.SharedViewModel
+import com.example.skillhack.dao.ProblemsDao
 import com.example.skillhack.dao.UserDao
 import com.example.skillhack.data.Problem
 import com.example.skillhack.data.User
 import com.example.skillhack.databinding.FragmentProblemDescripitonBinding
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
@@ -78,18 +80,37 @@ class ProblemDescripitonFragment : Fragment() {
         }
         binding.driveLinkSubmitButton.setOnClickListener {
 //            binding.ProgressBar.visibility = View.VISIBLE
-            binding.driveLinkInputTexteditlayout.visibility = View.GONE
             val solution = binding.driveLinkInputTexteditlayout.text.toString()
-            GlobalScope.launch {
-                Log.e("desc","phoneNumber -> ${phoneNumber} problemId -> ${problemId} solution -> $solution" )
-                UserDao().getUser(phoneNumber){ user->
-                    Log.e("desc", " this is null ")
-                    user.problems.add(mapOf(problemId!! to solution))
-                    user.problemCount += 1
-                    UserDao().addUser(user)
-//                    binding.ProgressBar.visibility = View.GONE
+            if(("https://drive.google.com/" in solution) or ("https://github.com/" in solution))
+            {
+                binding.driveLinkInputTexteditlayout.visibility = View.GONE
+                binding.driveLinkInputTextinputlayout.error = null
+                GlobalScope.launch(Dispatchers.Main) {
+                    UserDao().getUser(phoneNumber){ user->
+                            user.problems.add(problemId!!)
+                            user.problemCount += 1
+                            UserDao().addUser(user)
+
+                            ProblemsDao().getProblem(problemId!!){ problem ->
+                                problem.solvers.add(user.name)
+                                Log.e("problemDesc", "  inside....")
+                                val mutableMap = problem.submissions.toMutableMap()
+                                mutableMap[user.name] = solution
+                                problem.submissions = mutableMap.toMap()
+                                Log.e("problemDesc", "  inside....\n username#${user.name} submissions $${problem.submissions}")
+
+                                ProblemsDao().addProblem(problem)
+                            }
+                        }
+                    Toast.makeText(context,"Submitted successfully",Toast.LENGTH_LONG).show()
                 }
             }
+            else
+            {
+                binding.driveLinkInputTextinputlayout.error = "Invalid Link"
+            }
+
+
         }
         binding.startSolvingBtn.setOnClickListener{
             binding.startSolvingBtn.visibility=View.INVISIBLE

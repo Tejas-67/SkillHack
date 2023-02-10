@@ -59,7 +59,7 @@ class UserDao {
     }
 
     fun getUser(phoneNumber:String, callback:(User) -> Unit){
-        //val phoneNumber=auth.currentUser!!.phoneNumber!!
+
         var user: User=User()
         val userList=db.collection("users")
         Log.d("TEJAS", "Function Reached till getUser")

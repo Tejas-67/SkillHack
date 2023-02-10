@@ -53,7 +53,7 @@ class AdminSubmissionsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         Log.w("TEJAS", "On view created problemID $problemId")
-        binding.adminSubmissionsPageLinkrcv.adapter=SubmissionAdapter(viewModel.currproblem!!.submissions)
+        binding.adminSubmissionsPageLinkrcv.adapter=SubmissionAdapter(viewModel.currproblem!!.solvers,viewModel.currproblem!!.submissions)
 
 
 

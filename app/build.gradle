@@ -82,8 +82,8 @@ dependencies {
     implementation "com.google.android.gms:play-services-location:21.0.1"
     implementation 'com.github.joielechong:countrycodepicker:2.4.2'
 
-    //Animated buttons for submit the quesions'
-    implementation 'me.spark:submitbutton:1.0.1'
+    //Animated buttons for submit the questions'
+    implementation "me.spark:submitbutton:1.0.1"
 
     //cardView
     implementation "androidx.cardview:cardview:1.0.0"
