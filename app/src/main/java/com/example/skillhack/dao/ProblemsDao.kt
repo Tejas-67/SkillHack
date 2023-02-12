@@ -19,6 +19,7 @@ class ProblemsDao {
     public val map get()=_map
     private val TAG = "Problem Dao"
 
+
     fun getProblems(callback:(MutableList<Problem>) -> Unit):List<Problem>{
         var Problems : MutableList<Problem> = mutableListOf()
         Log.d("firebase", "Function Reached")

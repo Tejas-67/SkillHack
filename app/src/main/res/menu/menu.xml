@@ -1,8 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:id="@+id/search"
+        android:icon="@drawable/ic_search"
+        app:showAsAction="ifRoom"
+        android:iconTint="@color/halfwhite"
+        android:title="search for available hackathons"/>
+
     <item android:id="@+id/profile"
         android:icon="@drawable/blankprofilepicture"
         app:showAsAction="always"
         android:title="View Profile"/>
+
 </menu>

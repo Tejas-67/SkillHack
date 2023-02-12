@@ -58,6 +58,7 @@ class LoginPhoneNumberFragment : Fragment() {
 
     private fun phoneNumberSignIn() {
         binding.button.setOnClickListener {
+           // if(binding.phoneNumber.text.toString()=="+919775683700") sendToMain()
             val ccp = binding.countryCodeSelector
             //adding phoneNumber to country code. Now "+91" becomes "+91 9876543210"
             ccp.registerPhoneNumberTextView(binding.phoneNumber)
@@ -93,7 +94,7 @@ class LoginPhoneNumberFragment : Fragment() {
             //     user action.
             Log.e(TAG, "onVerificationCompleted:$credential")
             binding.getOtpProgressBar.visibility= View.INVISIBLE
-//            signInWithPhoneAuthCredential(credential)
+//             signInWithPhoneAuthCredential(credential)
         }
 
         override fun onVerificationFailed(e: FirebaseException) {
@@ -120,14 +121,14 @@ class LoginPhoneNumberFragment : Fragment() {
 //                withContext(Dispatchers.IO) {
                     Log.e(TAG, "onCodeSent :$verificationId")
 
-                    val action =
-                        LoginPhoneNumberFragmentDirections.actionLoginPhoneNumberFragmentToOtpVerificationFragment(
-                            otp=verificationId, token, phoneNumber=phoneNumber
-                        )
-                    binding.getOtpProgressBar.visibility = View.INVISIBLE
-                    binding.root.findNavController().navigate(action)
-//                }
-//            }
+                val action =
+                    LoginPhoneNumberFragmentDirections.actionLoginPhoneNumberFragmentToOtpVerificationFragment(
+                        otp=verificationId, token, phoneNumber=phoneNumber
+                    )
+                binding.getOtpProgressBar.visibility = View.INVISIBLE
+                binding.root.findNavController().navigate(action)
+
+
         }
     }
 

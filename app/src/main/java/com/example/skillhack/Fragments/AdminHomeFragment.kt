@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.*
+import android.widget.SearchView
 import androidx.fragment.app.Fragment
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
@@ -14,6 +15,7 @@ import com.example.skillhack.LoginActivity
 import com.example.skillhack.Models.SharedViewModel
 import com.example.skillhack.R
 import com.example.skillhack.dao.ProblemsDao
+import com.example.skillhack.data.Problem
 import com.example.skillhack.databinding.FragmentAdminHomeBinding
 import com.example.skillhack.databinding.FragmentHomeBinding
 import com.google.firebase.auth.ktx.auth
@@ -33,6 +35,7 @@ class AdminHomeFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
+    private var lop: List<Problem> = mutableListOf()
     private val viewModel : SharedViewModel by activityViewModels()
     private var _binding:FragmentAdminHomeBinding?=null
     private val binding get()=_binding!!
@@ -48,6 +51,7 @@ class AdminHomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        setHasOptionsMenu(true)
         // Inflate the layout for this fragment
        _binding=FragmentAdminHomeBinding.inflate(inflater, container, false)
         return binding.root
@@ -63,29 +67,46 @@ class AdminHomeFragment : Fragment() {
             binding.root.findNavController().navigate(action)
         }
         dao.getProblems { problems ->
-           binding.adminProblemListRcv.adapter= AdminProblemAdapter(problems, viewModel)
+           lop=problems
+            binding.adminProblemListRcv.adapter= AdminProblemAdapter(lop, viewModel)
             //implement problem submission list for admin through same rcv
         }
-        binding.logOutButton.setOnClickListener{
+
+        binding.search.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
+            override fun onQueryTextSubmit(query: String?): Boolean {
+
+                return false
+            }
+
+            override fun onQueryTextChange(query: String?): Boolean {
+                if(query!=null){
+                    val newlist=lop.filter { it.problemname.startsWith(query) }
+                    setData(newlist)
+                }
+                return true
+
+            }
+        })
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater?.inflate(R.menu.admin_menu, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
+        if(item.itemId==R.id.log_out_tv){
             Firebase.auth.signOut()
             startActivity(Intent(this.requireContext(), LoginActivity::class.java))
             activity?.finish()
         }
+        return super.onOptionsItemSelected(item)
     }
-
-//    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-//        super.onCreateOptionsMenu(menu, inflater)
-//        inflater?.inflate(R.menu.admin_menu, menu)
-//    }
-
-//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-//
-//        if(item.itemId==R.id.addproblem){
-//            val action=AdminHomeFragmentDirections.actionAdminHomeFragmentToAdminAddProblem()
-//            binding.root.findNavController().navigate(action)
-//        }
-//        return super.onOptionsItemSelected(item)
-//    }
+    fun setData(list : List<Problem>){
+        val adapter=AdminProblemAdapter(list, viewModel)
+        binding.adminProblemListRcv.adapter=adapter
+    }
 
     companion object {
         /**

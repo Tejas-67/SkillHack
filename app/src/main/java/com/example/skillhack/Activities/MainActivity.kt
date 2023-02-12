@@ -33,7 +33,6 @@ class MainActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if(item.itemId==R.id.profile){
-
         }
         return super.onOptionsItemSelected(item)
     }

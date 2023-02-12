@@ -16,30 +16,26 @@
 
 
             <ImageView
-                android:layout_width="90dp"
+                android:layout_width="50dp"
                 android:id="@+id/addproblemm"
                 android:textColor="@color/halfwhite"
                 app:tint="@color/white"
-                android:layout_height="90dp"
-                android:padding="20dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="15dp"
                 android:gravity="right"
                 android:src="@drawable/ic_add_problem"/>
-            <TextView
-                android:id="@+id/log_out_button"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:textColor="@color/white"
-                app:tint="@color/white"
-                android:text="LOGOUT"
-                android:padding="20dp"
-                style="@style/TextAppearance.AppCompat.Title"
-                android:textSize="20sp"
-                android:gravity="center_vertical"
+            <SearchView
+                android:id="@+id/search"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:iconifiedByDefault="false"
+                android:layout_marginTop="17dp"
+                android:layout_marginRight="10dp"
+                android:padding="4dp"
+                android:background="@drawable/searchview_bg"
+                android:queryHint="Search ongoing hackathons" />
 
-
-
-                android:layout_marginLeft="70dp"
-                />
 
         </LinearLayout>
 
@@ -48,9 +44,13 @@
             android:id="@+id/admin_problem_desc_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:paddingLeft="20dp"
             android:text="Click on a problem to see submissions"
             android:textColor="@color/halfwhite" />
+
+
+
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/admin_problem_list_rcv"

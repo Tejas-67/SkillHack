@@ -2,11 +2,10 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/addproblem"
+        android:id="@+id/logout"
         app:showAsAction="always"
-        android:icon="@drawable/ic_add_problem"
-        android:title="add problem"
-        android:iconTint="@color/white"
-        ></item>
+        android:icon="@drawable/logout_white_24dp"
+        android:title="Log Out"
+        />
 
 </menu>

@@ -82,6 +82,7 @@ class OtpVerificationFragment : Fragment() {
             resendVerificationCode()
             resendOTPTvVisibility()
         }
+//        if(auth.currentUser!!.phoneNumber=="+919775683700") sendToMain()
         verifyButton.setOnClickListener {
             val typedOTP = ( inputOTP1.text.toString()+ inputOTP2.text.toString()+inputOTP3.text.toString()+
                     inputOTP4.text.toString() + inputOTP5.text.toString()+inputOTP6.text.toString() )

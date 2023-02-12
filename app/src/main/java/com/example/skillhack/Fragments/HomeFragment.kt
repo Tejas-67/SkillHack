@@ -1,8 +1,10 @@
 package com.example.skillhack.Fragments
 
+import android.content.res.Configuration
 import android.os.Bundle
 import android.util.Log
 import android.view.*
+import android.widget.SearchView
 import androidx.fragment.app.Fragment
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
@@ -31,6 +33,9 @@ class HomeFragment : Fragment() {
     private var param2: String? = null
     private var _binding: FragmentHomeBinding?=null
     private val binding get()=_binding!!
+    private var lop: List<Problem> = mutableListOf()
+
+    private lateinit var adapter: ProblemAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -54,21 +59,62 @@ class HomeFragment : Fragment() {
 //        binding.problemListRcv.adapter=ProblemAdapter(dao.getProblems())
 
         dao.getProblems { problems ->
-            binding.problemListRcv.adapter = ProblemAdapter(problems)
+            lop=problems
+            binding.problemListRcv.adapter=ProblemAdapter(lop)
         }
 
 
+        binding.search.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
+            override fun onQueryTextSubmit(query: String?): Boolean {
+
+                return false
+            }
+
+            override fun onQueryTextChange(query: String?): Boolean {
+                if(query!=null){
+                    val newlist=lop.filter { it.problemname.startsWith(query) }
+                    setData(newlist)
+                }
+                return true
+
+            }
+        })
+        //binding.problemListRcv.adapter=ProblemAdapter(lop)
     }
 
     override fun onPrepareOptionsMenu(menu: Menu) {
         super.onPrepareOptionsMenu(menu)
     }
 
+    
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
         inflater?.inflate(R.menu.menu, menu)
 
 
+
+//        searchView?.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
+//            override fun onQueryTextSubmit(query: String?): Boolean {
+//
+//                return false
+//            }
+//            override fun onQueryTextChange(query: String?): Boolean {
+//                if(query!=null){
+//                    val newlist=lop.filter { it.problemname.startsWith(query) }
+//                    setData(newlist)
+//                }
+//                return true
+//
+//            }
+//        })
+
+
+
+    }
+
+    fun setData(list : List<Problem>){
+        adapter=ProblemAdapter(list)
+        binding.problemListRcv.adapter=adapter
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -80,6 +126,7 @@ class HomeFragment : Fragment() {
         }
         return super.onOptionsItemSelected(item)
     }
+
 
     override fun onDestroy() {
         super.onDestroy()

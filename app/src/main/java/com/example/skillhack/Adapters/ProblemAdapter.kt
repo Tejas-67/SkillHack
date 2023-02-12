@@ -11,7 +11,7 @@ import com.example.skillhack.Models.SharedViewModel
 import com.example.skillhack.R
 import com.example.skillhack.data.Problem
 
-class ProblemAdapter(val list: List<Problem>): RecyclerView.Adapter<ProblemAdapter.ProblemViewHolder>() {
+class ProblemAdapter(var list: List<Problem>): RecyclerView.Adapter<ProblemAdapter.ProblemViewHolder>() {
 
     override fun getItemCount(): Int {
         return list.size
@@ -45,6 +45,14 @@ class ProblemAdapter(val list: List<Problem>): RecyclerView.Adapter<ProblemAdapt
 
         }
     }
+//
+//    fun modify(q: String){
+//        val newlist=list.filter{
+//            it.problemname.startsWith(q)
+//        }
+//
+//        list=newlist
+//    }
 
 }
 

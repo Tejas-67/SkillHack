@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
 
-        android:src="@drawable/screenshot__18__removebg_preview"/>
+        android:src="@drawable/screenshot__18__removebg_preview1"/>
 
     <com.rilixtech.widget.countrycodepicker.CountryCodePicker
         android:id="@+id/countryCodeSelector"
